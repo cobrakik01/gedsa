@@ -4,11 +4,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 class Servicios_Controller extends Base_Controller {
-    
-    public function get_index(){
+
+    public function get_index() {
         return View::make('client.servicios');
     }
-    
+
 }
+
 ?>
