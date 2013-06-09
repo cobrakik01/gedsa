@@ -32,10 +32,12 @@
 |
 */
 
+/*
 Route::get('/', function()
 {
 	return View::make('home.index');
 });
+ */
 
 /*
 |--------------------------------------------------------------------------
@@ -110,3 +112,21 @@ Route::filter('auth', function()
 {
 	if (Auth::guest()) return Redirect::to('login');
 });
+
+/**
+ * ***************************************************************************
+ *                              CLIENTES
+ * La clase Client se encuentra en la carpeta libraries.
+ * en el metodo controllers() de la clase se podran agragar todos los controladores
+ * ***************************************************************************
+ */
+Client::controllers();
+
+/**
+ * ***************************************************************************
+ *                              ADMIN
+ * La clase Admin se encuentra en la carpeta libraries.
+ * en el metodo controllers() de la clase se podran agragar todos los controladores
+ * ***************************************************************************
+ */
+Admin::controllers();
