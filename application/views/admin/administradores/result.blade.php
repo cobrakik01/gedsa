@@ -37,8 +37,8 @@
                 {{HTML::link('administradores_admin/activar/' . base64_encode($us->id),'Activar')}}
                 @endif
                 
-                {{HTML::link('#','Editar')}}
-                {{HTML::link('#','Eliminar')}}
+                {{HTML::link('administradores_admin/editar/' . base64_encode($us->id),'Editar')}}
+                {{HTML::link('administradores_admin/eliminar/' . base64_encode($us->id),'Eliminar')}}
             </td>
         </tr>
         @endforeach

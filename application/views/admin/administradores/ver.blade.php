@@ -5,13 +5,47 @@
 @endsection
 
 @section('contenido_admin')
-    <h3>Administrador Seleccionado</h3>
     @if($us_desc)
     <p>
-    Nombre: {{$us_desc->nombre . ' ' . $us_desc->apellido_paterno . ' ' . $us_desc->apellido_materno}} <br />
-    Direccion: {{$us_desc->direccion}} <br />
-    Telefono: {{$us_desc->telefono}} <br />
-    E-Mail: {{$us_desc->email}}
+    <table class="tresult" align="center">
+            <tr>
+                <th colspan="2">
+                    <h3>Administrador Seleccionado</h3>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Nombre
+                </td>
+                <td>
+                    {{$us_desc->nombre . ' ' . $us_desc->apellido_paterno . ' ' . $us_desc->apellido_materno}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Direccion
+                </td>
+                <td>
+                    {{$us_desc->direccion}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Telefono
+                </td>
+                <td>
+                    {{$us_desc->telefono}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E-Mail
+                </td>
+                <td>
+                    {{$us_desc->email}}
+                </td>
+            </tr>
+        </table>
     </p>
     @else
     No existe el usuario solicitado

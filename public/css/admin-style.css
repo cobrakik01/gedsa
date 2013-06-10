@@ -114,6 +114,16 @@ html body {
     font-size: 13px;
 }
 
+.tresult tr td a:link, .tresult tr td a:visited {
+    color: #5d9cd8;    
+    text-decoration: none;
+}
+
+.tresult tr td a:hover {
+    color: #62a5e5;
+    text-decoration: underline;
+}
+
 /**
  * *********************************************************
  *                  Paginado
