@@ -3,14 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Taller de Arquitectura Gedsa</title>
-        <link href="/css/estilo.css" rel="stylesheet" type="text/css">
+        {{HTML::style('css/client-style.css')}}
     </head>
 
     <body>
         <div class="header">
             <div class="wrapper-s">
                 <div id="container-logo">
-                    <img src="/img/logo.png" />
+                    {{ HTML::image('img/logo.png', 'Logo GEDSA') }}
                     <div id="font-header" style="margin-top: 50px;">
                         <div style="font-size: 36px; color: #2D2D2D; font-weight: bold;">
                             GEDSA
@@ -47,7 +47,7 @@
                 <div id="container-slider">
                     <div class="content-slider">
                         <div class="slider">
-                            <img src="/img/Albums/Album 2/fachada interior 2.jpg"/>
+                            {{ HTML::image('img/Albums/Album 2/fachada interior 2.jpg', 'Logo GEDSA') }}
                             <div class="bg-description-slider">
                                 <h3>Titulo Foto</h3>
                                 <div>
@@ -83,7 +83,7 @@
             <div class="wrapper-s" id="footer-content">
                 Taller de Arquitectura <div style="font-weight: bold;">GEDSA</div>
                 <p>
-                    &copy2013
+                    &copy<?php echo date('Y');?>
                 </p>
             </div>
         </div>

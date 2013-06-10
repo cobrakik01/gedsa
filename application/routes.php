@@ -113,6 +113,10 @@ Route::filter('auth', function()
 	if (Auth::guest()) return Redirect::to('login');
 });
 
+Route::get('login', function(){
+    return View::make('login.login');
+});
+
 /**
  * ***************************************************************************
  *                              CLIENTES
@@ -130,3 +134,5 @@ Client::controllers();
  * ***************************************************************************
  */
 Admin::controllers();
+
+Route::any('login', 'auth@login');

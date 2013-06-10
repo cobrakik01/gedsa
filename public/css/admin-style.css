@@ -1,0 +1,127 @@
+/* 
+    Document   : admin-style
+    Created on : 9/06/2013, 04:02:43 PM
+    Author     : cobrakik
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+html body {
+    margin: 0px;
+    background-color: #f9f9f9;
+    font-family: Geneva, sans-serif;
+    font-stretch: extra-condensed;
+    color: #707070;
+}
+
+/**
+ * *********************************************************
+ *                  Logo
+ * *********************************************************
+ */
+#logo {
+    background-color: #333333;
+    color: #fcfcfc;
+    font-size: 2em;
+}
+/**
+ * *********************************************************
+ *                  Menu
+ * *********************************************************
+ */
+.menu {
+    background-color: #1c1c1c;
+    border-top: solid 1px #3d3d3d;
+}
+
+.menu ul {
+    margin: 0;
+    list-style: none;
+    overflow: hidden;
+}
+
+.menu ul li {
+    float: left;
+}
+
+.menu ul li a:link, .menu ul li a:visited {
+    color: #f9f9f9;
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+    border-top: solid 1px transparent;
+}
+
+.menu ul li a:hover {
+    background-color: #2b2b2b;
+    border-top: solid 1px #232323;
+    color: #ffffff;
+}
+
+.menu ul li a:active {
+    background-color: #0c0c0c;
+}
+
+/**
+ * *********************************************************
+ *                  Wraper
+ * *********************************************************
+ */
+.wraper {
+    margin: 0 auto;
+    width: 900px;
+}
+
+/**
+ * *********************************************************
+ *                  Container
+ * *********************************************************
+ */
+#container {
+    background-color: #fcfcfc;
+    border-left: solid 1px #e5e5e5;
+    border-right: solid 1px #e5e5e5;
+    border-bottom: solid 1px #e5e5e5;
+    padding: 20px;
+    min-height: 100px;
+    margin-bottom: 20px;
+}
+
+/**
+ * *********************************************************
+ *                  Footer
+ * *********************************************************
+ */
+#footer {
+    border-top: solid 1px #e1e1e1;
+    padding-top: 20px;
+    font-size: 12px;
+    text-align: center;
+    font-stretch: ultra-expanded;
+}
+
+/**
+ * *********************************************************
+ *                  Paginado
+ * *********************************************************
+ */
+.pagination ul {
+    list-style: none;
+    overflow: hidden;
+    margin: 0;
+}
+
+.pagination ul li {
+    float: left;
+}
+
+.pagination ul li a:link, .pagination ul li a:visited {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: #88abfc;
+}
+
+.pagination ul li a[href="#"]:link {
+    color: #999999;
+}

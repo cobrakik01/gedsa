@@ -8,7 +8,9 @@
 class Admin {
 
     public static function controllers() {
-        
+        Router::controller('admin');
+        Router::controller('Administradores_Admin');
+        Router::controller('Perfil_Admin');
     }
 
 }

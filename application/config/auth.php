@@ -29,7 +29,7 @@ return array(
 	|
 	*/
 
-	'username' => 'email',
+	'username' => 'nombre',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return array(
 	|
 	*/
 
-	'model' => 'User',
+	'model' => 'Administrador',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -68,6 +68,6 @@ return array(
 	|
 	*/
 
-	'table' => 'users',
+	'table' => 'administradores',
 
 );
