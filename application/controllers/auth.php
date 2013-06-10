@@ -22,7 +22,7 @@ class Auth_Controller extends Base_Controller {
             Auth::login($us);
             return Redirect::to('admin');
         } else {
-            return Laravel\Redirect::back()->with_input();
+            return Laravel\View::make('auth.login')->with(array('error' => 'El usuario es incorrecto', 'txtNombreUsuario' => Input::get('txtNombreUsuario')));
         }
     }
 

@@ -12,7 +12,7 @@
             {{ Form::label('txtNombreUsuario', 'Nombre de Usuario') }}
         </td>
         <td>
-            {{ Form::text('txtNombreUsuario', Input::old('txtNombreUsuario')) }}
+            {{ Form::text('txtNombreUsuario', @$txtNombreUsuario) }}
         </td>
     </tr>
     <tr>
@@ -30,4 +30,7 @@
     </tr>
 </table>
 {{ Form::close() }}
+@if(@$error)
+<div style="background-color: #ff4b24; color: white; padding: 10px; border: solid 10px #ed4621; text-align: center;">{{$error}}</div>
+@endif
 @endsection

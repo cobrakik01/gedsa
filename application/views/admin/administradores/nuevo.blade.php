@@ -7,7 +7,7 @@
 @section('contenido_admin')
     <h3>Nuevo Administrador</h3>
     {{Form::open()}}
-    <table style="width: 300px; margin: 0 auto;">
+    <table align="center">
         <tr>
             <td>
                 {{Form::label('txtNombre','Nombre')}}

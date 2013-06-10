@@ -24,6 +24,25 @@ class Administradores_Admin_Controller extends Base_Controller {
     public function get_nuevo(){
         return View::make('admin.administradores.nuevo');
     }
+    
+    public function get_ver($id){
+        $user = DescripcionUsuario::find(base64_decode($id));
+        return View::make('admin.administradores.ver')->with(array('us_desc' => $user));
+    }
+    
+    public function get_activar($id){
+        $user = Administrador::find(base64_decode($id));
+        $user->activo = true;
+        $user->save();
+        return Laravel\Redirect::back();
+    }
+    
+    public function get_desactivar($id){
+        $user = Administrador::find(base64_decode($id));
+        $user->activo = false;
+        $user->save();
+        return Laravel\Redirect::back();
+    }
 
     public function get_result($arg) {
         $users = null;

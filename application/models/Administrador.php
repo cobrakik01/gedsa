@@ -12,6 +12,7 @@
  */
 class Administrador extends Eloquent {
     public static $table = "administradores";
+    public static $timestamps = false;
 }
 
 ?>
