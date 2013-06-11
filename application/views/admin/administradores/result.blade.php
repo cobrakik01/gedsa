@@ -30,7 +30,7 @@
             @endif
             </td>
             <td>
-                {{HTML::link('administradores_admin/ver/' . base64_encode($us->descripcion_usuarios_id),'Ver')}}
+                {{HTML::link('administradores_admin/ver/' . base64_encode($us->id),'Ver')}}
                 @if($us->activo)
                 {{HTML::link('administradores_admin/desactivar/' . base64_encode($us->id),'Desactivar')}}
                 @else

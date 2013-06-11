@@ -12,6 +12,10 @@
  */
 class DescripcionUsuario extends Eloquent {
     public static $table = "descripcion_usuarios";
+    
+    public function administrador(){
+        return $this->has_one('Administrador'); // indica que la clave foranea de esta tabla se encuentra dentro de Administrador
+    }
 }
 
 ?>

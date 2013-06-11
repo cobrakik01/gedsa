@@ -5,7 +5,7 @@
 @endsection
 
 @section('contenido_admin')
-    <h3>Nuevo Administrador</h3>
+    <h3>Editar Administrador</h3>
     <div style="padding: 10px; text-align: center; background-color: #f7f7f7; border: solid 1px #efefef; width: 300px; margin: 0 auto; margin-bottom: 20px;">Todos los campos con asterisco son requeridos</div>
     {{Form::open()}}
     <table align="center">
@@ -14,7 +14,7 @@
                 {{Form::label('txtNombre','Nombre *')}}
             </td>
             <td>
-                {{Form::text('txtNombre', Input::old('txtNombre'))}}
+                {{Form::text('txtNombre', $us_desc->nombre)}}
             </td>
         </tr>
         <tr>
@@ -22,7 +22,7 @@
                 {{Form::label('txtApp','Apellido Paterno *')}}
             </td>
             <td>
-                {{Form::text('txtApp', Input::old('txtApp'))}}
+                {{Form::text('txtApp', $us_desc->apellido_paterno)}}
             </td>
         </tr>
         <tr>
@@ -30,7 +30,7 @@
                 {{Form::label('txtApm','Apellido Materno')}}
             </td>
             <td>
-                {{Form::text('txtApm', Input::old('txtApm'))}}
+                {{Form::text('txtApm', $us_desc->apellido_materno)}}
             </td>
         </tr>
         <tr>
@@ -38,7 +38,7 @@
                 {{Form::label('txtDireccion','Direccion *')}}
             </td>
             <td>
-                {{Form::text('txtDireccion', Input::old('txtDireccion'))}}
+                {{Form::text('txtDireccion', $us_desc->direccion)}}
             </td>
         </tr>
         <tr>
@@ -46,7 +46,7 @@
                 {{Form::label('txtTelefono','Telefono * ')}}
             </td>
             <td>
-                {{Form::telephone('txtTelefono', Input::old('txtTelefono'))}}
+                {{Form::telephone('txtTelefono', $us_desc->telefono)}}
             </td>
         </tr>
         <tr>
@@ -54,20 +54,29 @@
                 {{Form::label('txtEmail','E-Mail')}}
             </td>
             <td>
-                {{Form::email('txtEmail', Input::old('txtEmail'))}}
+                {{Form::email('txtEmail', $us_desc->email)}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtNombreAdmin', 'Nik Name *')}}
+                Nik Name
             </td>
             <td>
-                {{Form::text('txtNombreAdmin', Input::old('txtNombreAdmin'))}}
+                {{$us->nombre}}
+                {{Form::hidden('txtNombreAdmin', $us->nombre)}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtPassword', 'Password *')}}
+                {{Form::label('txtPasswordA', 'Password Actual *')}}
+            </td>
+            <td>
+                {{Form::password('txtPasswordA')}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{Form::label('txtPassword', 'Nuevo Password *')}}
             </td>
             <td>
                 {{Form::password('txtPassword')}}
@@ -83,9 +92,10 @@
         </tr>
         <tr>
             <td colspan="2" align="right">
-                {{Form::submit('Crear')}}
+                {{Form::submit('Guardar Cambios')}}
             </td>
         </tr>
     </table>
+    {{Form::hidden('txtId', base64_encode($us->id))}}
     {{Form::close()}}
 @endsection
