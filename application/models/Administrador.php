@@ -15,7 +15,8 @@ class Administrador extends Eloquent {
     public static $timestamps = false;
     
     public function descripcion(){
-        return $this->belongs_to('DescripcionUsuario'); // indica que contiene la clave foranea de la tabla DescripcionUsuario
+        return DescripcionUsuario::where('id', '=', $this->descripcion_usuarios_id)->first();
+        //return $this->belongs_to('DescripcionUsuario'); // indica que contiene la clave foranea de la tabla DescripcionUsuario
     }
 }
 

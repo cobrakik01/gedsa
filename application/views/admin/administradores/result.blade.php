@@ -6,6 +6,7 @@
 
 @section('contenido_admin')
     <h3>{{$accion}}</h3>
+    
     @if($users->results)
     <table class="tresult" align="center">
         <tr>
