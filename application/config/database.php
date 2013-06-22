@@ -69,10 +69,10 @@ return array(
 
 		'mysql' => array(
 			'driver'   => 'mysql',
-			'host'     => '127.0.0.1',
-			'database' => 'gedsa',
-			'username' => 'root',
-			'password' => '',
+			'host'     => '127.0.0.1',// Host Remoto sql310.byethost17.com
+			'database' => 'b17_13401040_gedsa',
+			'username' => 'root', // b17_13401040
+			'password' => '', // pinenis
 			'charset'  => 'utf8',
 			'prefix'   => '',
 		),
