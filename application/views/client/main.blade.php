@@ -67,9 +67,9 @@
                         <ul class="vmenu">
                             <h3>Tambien visitenos en...</h3>
                             <li>
-                                <a href="http://www.facebook.com/tallerdearq.geedsa?fref=ts" target="blanck"> <img src="/img/contactanos/search2.png" border="0" width="15" height="15" /> Faceboock</a>
-                                <a href="#"> <img src="/img/contactanos/twitter_borde.png" border="0" width="15" height="15" /> Twitter</a>
-                                <a href="#"> <img src="/img/contactanos/youtube.png" border="0" width="20" height="20" /> Youtube</a>
+                                <a href="http://www.facebook.com/tallerdearq.geedsa?fref=ts" target="blanck"> {{ HTML::image('img/contactanos/search2.png', 'Faceboock', array('width'=>'15', 'height'=>'15', 'border'=>'0')) }} Faceboock</a>
+                                <a href="">{{ HTML::image('img/contactanos/twitter_borde.png', 'Twitter', array('width'=>'15', 'height'=>'15', 'border'=>'0')) }} Twitter</a>
+                                <a href="">{{ HTML::image('img/contactanos/youtube.png', 'Youtube', array('width'=>'15', 'height'=>'15', 'border'=>'0')) }} Youtube</a>
                             </li>
                         </ul>
                     </div>

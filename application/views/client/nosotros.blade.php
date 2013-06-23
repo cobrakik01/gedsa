@@ -9,13 +9,28 @@
 @endsection
 
 @section('titulo_seccion')
-<div style="font-stretch: extra-condensed; font-size: 25px; margin-top: 20px;">
-    Nosotros
-</div>
+    <h2>Nosotros</h2>
 @endsection
 
 @section('contenido')
 <div class="article">
-    Estos son algunos de nuestro trabajos
+    <h3>Misión</h3>
+    <div>
+        Hacer realidad tus deseos de ampliacion remodelacion o construccion en tu vivienda.
+    </div>
+</div>
+
+<div class="article">
+    <h3 style="text-align: right;">Visión</h3>
+    <div>
+        Nos aaptamos a tus necesidaes de todo tipo.
+    </div>
+</div>
+
+<div class="article">
+    <h3>Objetivos</h3>
+    <div>
+        Poder hacer realidad lo que siempre soñaste de tu vivienda.
+    </div>
 </div>
 @endsection

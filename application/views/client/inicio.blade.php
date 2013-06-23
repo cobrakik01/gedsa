@@ -25,11 +25,11 @@
             Resumen
         </div>
     </div>
-    <img src="/img/Albums/Album 15-03-2013/IMG_20120710_123149.jpg" width="180" height="150" />
+    {{ HTML::image('img/Albums/Album 15-03-2013/IMG_20120710_124026.jpg', 'Fachada', array('width'=>'180', 'height'=>'150', 'border'=>'0')) }}
 </div>
 
 <div class="article">
-    <img src="/img/Albums/Album 15-03-2013/IMG_20120710_124026.jpg" width="180" height="150" />
+    {{ HTML::image('img/Albums/Album 15-03-2013/IMG_20120710_124026.jpg', 'Fachada', array('width'=>'180', 'height'=>'150', 'border'=>'0')) }}
     <div>
         <h3>
             Articulo Derecho

@@ -6,10 +6,56 @@
         Purpose of the stylesheet follows.
 */
 
-body{
+body {
     margin: 0;
     background-color: #333;
     font-family: Geneva, sans-serif;
+}
+
+h1, h2, h3, h4 {
+    font-family: Geneva, sans-serif;
+    font-stretch: condensed;
+    font-weight: 500;
+    border-bottom: solid 1px #eaeaea;
+}
+
+h1:nth-child(2n+3), h2:nth-child(2n+3), h3:nth-child(2n+3), h4:nth-child(2n+3) {
+    text-align: right;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    color: #3886e0;
+}
+
+a:hover {
+    color: #3886e0;
+    text-decoration: cancel-overline;
+}
+
+input[type="submit"], input[type="button"], button {
+    padding: 5px;
+    border: solid 1px #9384ad;
+    border-radius: 5px;
+    background-color: #baa7db;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, button:hover {
+    background-color: #c4b0e8;
+}
+
+input[type="submit"]:active, input[type="button"]:active, button:active {
+    background-color: #a291bf;
+}
+
+input[type="text"], input[type="tel"], input[type="email"] {
+    border-radius: 5px;
+    border: solid 1px #e8e8e8;
+    padding: 5px;
+}
+
+input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus {
+    border: solid 1px #d6c0fc;
 }
 
 .wrapper-s {
@@ -37,7 +83,7 @@ body{
  ************************************************/
 .article {
     border: solid 1px transparent;
-    background-image: url(/img/home/panel-gris.svg.png);
+    background-image: url(../img/home/panel-gris.svg.png);
     background-repeat: no-repeat;
     padding: 10px;
     margin: 15px;
@@ -47,13 +93,14 @@ body{
 }
 
 .article:hover {
-    background-image: url(/img/home/panel-gris-hover.png);
+    background-image: url(../img/home/panel-gris-hover.png);
     color: #3d3d3d;
     cursor: pointer;
 }
 
 .article div {
     width: 466px;
+    min-height: 80px;
     float: left;
     padding: 10px;
 }
@@ -70,12 +117,12 @@ body{
  ************************************************/
 
 .font-header {
-    background-image: url(/img/fondo-cabecera.png);
+    background-image: url(../img/fondo-cabecera.png);
 }
 
 .header {
     background-color: #ffffff;
-    background-image: url(/img/fondo-cabecera.png);
+    background-image: url(../img/fondo-cabecera.png);
     min-height: 160px;
 }
 
@@ -114,7 +161,7 @@ body{
     margin: 10px auto 0px auto;
     height: 400px;
     padding: 5px 5px 5px 5px;
-    background-image: url(/img/home/background-slider.png);
+    background-image: url(../img/home/background-slider.png);
     background-repeat: no-repeat;
     overflow: hidden;
 }
@@ -143,7 +190,7 @@ body{
 }
 
 .bg-description-slider {
-    background-image: url(/img/home/panel-descripcion-img-slider.png); 
+    background-image: url(../img/home/panel-descripcion-img-slider.png); 
     width: 448px; 
     height: 366px;
     margin-top: 5px;
@@ -227,7 +274,7 @@ body{
  ************************************************/
 #footer {
     min-height: 200px;
-    background-image: url(/img/home/footer.png);
+    background-image: url(../img/home/footer.png);
     background-repeat: repeat-x;
 }
 
@@ -266,3 +313,53 @@ body{
     background-color: #f9f9f9;
 }
 
+/*
+ *******************************************************************************
+ *
+ *                  Seccion denuestros trabajos
+ *
+ *******************************************************************************
+ */
+.limites-album {
+    background-color: #f9f9f9; 
+    border: solid 1px #e8e8e8;
+    padding: 3px; 
+    margin-bottom: 20px;
+}
+
+.limites-album:hover {
+    border: solid 1px #d8d8d8;
+}
+
+.marco-album {
+    border: solid 1px #ededed;
+    padding: 10px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.cont-foto {
+    float: left;
+    padding: 5px;
+    width: 222px;
+    height: 150px;
+    cursor: pointer;
+    margin: 3px 3px 0px 3px;
+    border: solid 1px #ededed;
+    background-color: #f4f4f4;
+}
+
+.cont-foto:hover {
+    border: solid 1px #c4c4c4;
+}
+
+.desc-foto {
+    background-color: #ffffff;
+    font-size: 13px;
+    opacity: 0.7;
+    position: relative;
+    width: 216px;
+    height: 40px;
+    top: -60px;
+    padding: 3px;
+}

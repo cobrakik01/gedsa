@@ -9,13 +9,26 @@
 @endsection
 
 @section('titulo_seccion')
-<div style="font-stretch: extra-condensed; font-size: 25px; margin-top: 20px;">
-    Nuestros Trabajos
-</div>
+    <h2> Nuestros Trabajos </h2>
 @endsection
 
 @section('contenido')
-<div class="article">
-    Estos son algunos de nuestro trabajos
+<?php for($a = 0; $a < 2; $a++): ?>
+<div class="limites-album">
+    <h3 style="padding-top: 10px; padding-left: 10px;">Titulo Album </h3>
+    <div style="font-size: 13px; margin-bottom: 20px; margin-left: 50px; font-weight: lighter;">
+        Descripcion detallada del album
+    </div>
+    <div class="marco-album">
+        <?php for($i = 0; $i < 9; $i++): ?>
+        <div class="cont-foto">
+            {{ HTML::image('img/Albums/Album 15-03-2013/IMG_20120710_124026.jpg', 'Fachada', array('width'=>'100%', 'height'=>'100%', 'border'=>'0')) }}
+            <div class="desc-foto">
+                Descripcion de la foto
+            </div>
+        </div>
+        <?php endfor; ?>
+    </div>
 </div>
+<?php endfor; ?>
 @endsection
