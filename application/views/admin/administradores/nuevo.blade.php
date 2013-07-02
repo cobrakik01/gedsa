@@ -11,78 +11,105 @@
     <table align="center">
         <tr>
             <td>
-                {{Form::label('txtNombre','Nombre *')}}
+                {{Form::label('nombre','Nombre *')}}
             </td>
             <td>
-                {{Form::text('txtNombre', Input::old('txtNombre'))}}
+                {{Form::text('nombre', Input::old('nombre'))}}
+            </td>
+            <td>
+                {{$errors->first('nombre')}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtApp','Apellido Paterno *')}}
+                {{Form::label('app','Apellido Paterno *')}}
             </td>
             <td>
-                {{Form::text('txtApp', Input::old('txtApp'))}}
+                {{Form::text('app', Input::old('app'))}}
+            </td>
+            <td>
+                {{$errors->first('app')}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtApm','Apellido Materno')}}
+                {{Form::label('apm','Apellido Materno')}}
             </td>
             <td>
-                {{Form::text('txtApm', Input::old('txtApm'))}}
+                {{Form::text('apm', Input::old('apm'))}}
+            </td>
+            <td>
+                {{$errors->first('apm')}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtDireccion','Direccion *')}}
+                {{Form::label('direccion','Direccion *')}}
             </td>
             <td>
-                {{Form::text('txtDireccion', Input::old('txtDireccion'))}}
+                {{Form::text('direccion', Input::old('direccion'))}}
+            </td>
+            <td>
+                {{$errors->first('direccion')}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtTelefono','Telefono * ')}}
+                {{Form::label('telefono','Telefono * ')}}
             </td>
             <td>
-                {{Form::telephone('txtTelefono', Input::old('txtTelefono'))}}
+                {{Form::telephone('telefono', Input::old('telefono'))}}
+            </td>
+            <td>
+                {{$errors->first('telefono')}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtEmail','E-Mail')}}
+                {{Form::label('email','E-Mail')}}
             </td>
             <td>
-                {{Form::email('txtEmail', Input::old('txtEmail'))}}
+                {{Form::email('email', Input::old('email'))}}
+            </td>
+            <td>
+                {{$errors->first('email')}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtNombreAdmin', 'Nik Name *')}}
+                {{Form::label('nikname', 'NikName *')}}
             </td>
             <td>
-                {{Form::text('txtNombreAdmin', Input::old('txtNombreAdmin'))}}
+                {{Form::text('nikname', Input::old('nikname'))}}
+            </td>
+            <td>
+                {{$errors->first('nikname')}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtPassword', 'Password *')}}
+                {{Form::label('password', 'Password *')}}
             </td>
             <td>
-                {{Form::password('txtPassword')}}
+                {{Form::password('password')}}
+            </td>
+            <td>
+                {{$errors->first('password')}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtCPassword', 'Confirmar Password *')}}
+                {{Form::label('password_confirmation', 'Confirmar Password *')}}
             </td>
             <td>
-                {{Form::password('txtCPassword')}}
+                {{Form::password('password_confirmation')}}
+            </td>
+            <td>
+                {{$errors->first('password_confirmation')}}
             </td>
         </tr>
         <tr>
-            <td colspan="2" align="right">
+            <td colspan="3" align="right">
                 {{Form::submit('Crear')}}
             </td>
         </tr>

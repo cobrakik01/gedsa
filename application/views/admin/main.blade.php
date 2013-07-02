@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Panel de Administración GEDSA</title>
-        {{HTML::style('css/admin-style.css')}}
+        {{HTML::style('pages/css/admin-style.css')}}
     </head>
     <body>
         <div id="logo">

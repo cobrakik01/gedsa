@@ -3,14 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Taller de Arquitectura Gedsa</title>
-        {{HTML::style('css/client-style.css')}}
+        {{HTML::style('pages/css/client-style.css')}}
     </head>
 
     <body>
         <div class="header">
             <div class="wrapper-s">
                 <div id="container-logo">
-                    {{ HTML::image('img/logo.png', 'Logo GEDSA') }}
+                    {{ HTML::image('pages/img/logo.png', 'Logo GEDSA') }}
                     <div id="font-header" style="margin-top: 50px;">
                         <div style="font-size: 36px; color: #2D2D2D; font-weight: bold;">
                             GEDSA
@@ -47,7 +47,7 @@
                 <div id="container-slider">
                     <div class="content-slider">
                         <div class="slider">
-                            {{ HTML::image('img/Albums/Album 2/fachada interior 2.jpg', 'Logo GEDSA') }}
+                            {{ HTML::image('pages/img/Albums/Album 2/fachada interior 2.jpg', 'Logo GEDSA') }}
                             <div class="bg-description-slider">
                                 <h3>Titulo Foto</h3>
                                 <div>
@@ -67,9 +67,9 @@
                         <ul class="vmenu">
                             <h3>Tambien visitenos en...</h3>
                             <li>
-                                <a href="http://www.facebook.com/tallerdearq.geedsa?fref=ts" target="blanck"> {{ HTML::image('img/contactanos/search2.png', 'Faceboock', array('width'=>'15', 'height'=>'15', 'border'=>'0')) }} Faceboock</a>
-                                <a href="">{{ HTML::image('img/contactanos/twitter_borde.png', 'Twitter', array('width'=>'15', 'height'=>'15', 'border'=>'0')) }} Twitter</a>
-                                <a href="">{{ HTML::image('img/contactanos/youtube.png', 'Youtube', array('width'=>'15', 'height'=>'15', 'border'=>'0')) }} Youtube</a>
+                                <a href="http://www.facebook.com/tallerdearq.geedsa?fref=ts" target="blanck"> {{ HTML::image('pages/img/contactanos/search2.png', 'Faceboock', array('width'=>'15', 'height'=>'15', 'border'=>'0')) }} Faceboock</a>
+                                <a href="">{{ HTML::image('pages/img/contactanos/twitter_borde.png', 'Twitter', array('width'=>'15', 'height'=>'15', 'border'=>'0')) }} Twitter</a>
+                                <a href="">{{ HTML::image('pages/img/contactanos/youtube.png', 'Youtube', array('width'=>'15', 'height'=>'15', 'border'=>'0')) }} Youtube</a>
                             </li>
                         </ul>
                     </div>

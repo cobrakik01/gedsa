@@ -12,6 +12,11 @@
  */
 class Perfil_Admin_Controller extends Base_Controller {
 
+    public function __construct() {
+        parent::__construct();
+        $this->filter('before', 'auth');
+    }
+    
     public function get_index() {
         $user = Auth::user();
         $us_desc = $user->descripcion();

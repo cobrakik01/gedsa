@@ -45,6 +45,11 @@
                     {{$us_desc->email}}
                 </td>
             </tr>
+            <tr>
+                <td colspan="2" align='center'>
+                    {{HTML::link('administradores_admin/editar/' . base64_encode($us_desc->administrador()->id),'Editar')}}
+                </td>
+            </tr>
         </table>
     </p>
     @else

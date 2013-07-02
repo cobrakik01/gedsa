@@ -11,50 +11,65 @@
     <table align="center">
         <tr>
             <td>
-                {{Form::label('txtNombre','Nombre *')}}
+                {{Form::label('nombre','Nombre *')}}
             </td>
             <td>
-                {{Form::text('txtNombre', $us_desc->nombre)}}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{Form::label('txtApp','Apellido Paterno *')}}
+                {{Form::text('nombre', ($us_desc)?$us_desc->nombre:Input::old('nombre'))}}
             </td>
             <td>
-                {{Form::text('txtApp', $us_desc->apellido_paterno)}}
+                {{$errors->first('nombre')}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtApm','Apellido Materno')}}
+                {{Form::label('app','Apellido Paterno *')}}
             </td>
             <td>
-                {{Form::text('txtApm', $us_desc->apellido_materno)}}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{Form::label('txtDireccion','Direccion *')}}
+                {{Form::text('app', ($us_desc)?$us_desc->apellido_paterno:Input::old('app'))}}
             </td>
             <td>
-                {{Form::text('txtDireccion', $us_desc->direccion)}}
+                {{$errors->first('app')}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtTelefono','Telefono * ')}}
+                {{Form::label('apm','Apellido Materno')}}
             </td>
             <td>
-                {{Form::telephone('txtTelefono', $us_desc->telefono)}}
+                {{Form::text('apm', ($us_desc)?$us_desc->apellido_materno:Input::old('apm'))}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtEmail','E-Mail')}}
+                {{Form::label('direccion','Direccion *')}}
             </td>
             <td>
-                {{Form::email('txtEmail', $us_desc->email)}}
+                {{Form::text('direccion', ($us_desc)?$us_desc->direccion:Input::old('direccion'))}}
+            </td>
+            <td>
+                {{$errors->first('direccion')}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{Form::label('telefono','Telefono * ')}}
+            </td>
+            <td>
+                {{Form::telephone('telefono', ($us_desc)?$us_desc->telefono:Input::old('telefono'))}}
+            </td>
+            <td>
+                {{$errors->first('telefono')}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{Form::label('email','E-Mail')}}
+            </td>
+            <td>
+                {{Form::email('email', ($us_desc)?$us_desc->email:Input::old('email'))}}
+            </td>
+            <td>
+                {{$errors->first('email')}}
             </td>
         </tr>
         <tr>
@@ -62,32 +77,41 @@
                 Nik Name
             </td>
             <td>
-                {{$us->nombre}}
-                {{Form::hidden('txtNombreAdmin', $us->nombre)}}
+                {{($us)?$us->nombre:Input::old('nikname')}}
+                {{Form::hidden('nikname', ($us)?$us->nombre:Input::old('nikname'))}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtPasswordA', 'Password Actual *')}}
+                {{Form::label('password_old', 'Password Actual *')}}
             </td>
             <td>
-                {{Form::password('txtPasswordA')}}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{Form::label('txtPassword', 'Nuevo Password *')}}
+                {{Form::password('password_old')}}
             </td>
             <td>
-                {{Form::password('txtPassword')}}
+                {{$errors->first('password_old')}}
             </td>
         </tr>
         <tr>
             <td>
-                {{Form::label('txtCPassword', 'Confirmar Password *')}}
+                {{Form::label('password', 'Nuevo Password *')}}
             </td>
             <td>
-                {{Form::password('txtCPassword')}}
+                {{Form::password('password')}}
+            </td>
+            <td>
+                {{$errors->first('password')}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{Form::label('password_confirmation', 'Confirmar Password *')}}
+            </td>
+            <td>
+                {{Form::password('password_confirmation')}}
+            </td>
+            <td>
+                {{$errors->first('password_confirmation')}}
             </td>
         </tr>
         <tr>
@@ -96,6 +120,6 @@
             </td>
         </tr>
     </table>
-    {{Form::hidden('txtId', base64_encode($us->id))}}
+    {{Form::hidden('id', base64_encode(($us)?$us->id:Input::old('id')))}}
     {{Form::close()}}
 @endsection
