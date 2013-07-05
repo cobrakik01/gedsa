@@ -15,6 +15,14 @@
             </tr>
             <tr>
                 <td>
+                    <strong>Administrador</strong>
+                </td>
+                <td>
+                    <strong>{{$us_desc->administrador()->nombre}}</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     Nombre
                 </td>
                 <td>

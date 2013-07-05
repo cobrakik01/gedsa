@@ -5,8 +5,7 @@
 @endsection
 
 @section('contenido')
-    <h2>Administradores</h2>
-    <hr />
+    <h2 style="text-align: right;">Administradores</h2>
     @section('menu_admin')
     <div class="menu">
         <ul>

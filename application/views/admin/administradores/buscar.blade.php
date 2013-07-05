@@ -5,7 +5,7 @@
 @endsection
 
 @section('contenido_admin')
-    <h3>Busquedas con filtros</h3>
+<h3>Busquedas con filtros</h3>
     
     {{Form::open()}}
         <table align="center">

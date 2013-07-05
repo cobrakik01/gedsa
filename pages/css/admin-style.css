@@ -14,6 +14,12 @@ html body {
     color: #707070;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-weight: lighter; 
+    font-stretch: extra-condensed; 
+    border-bottom: solid 1px #dadada;
+}
+
 a:link, a:visited {
     color: #5d9cd8;    
     text-decoration: none;
@@ -22,6 +28,60 @@ a:link, a:visited {
 a:hover {
     color: #62a5e5;
     text-decoration: underline;
+}
+
+textarea {
+    overflow: auto;
+}
+
+input[type="text"], input[type="tel"], input[type="email"], input[type="password"], textarea {
+    padding: 5px;
+    border-radius: 3px;
+    border: #dddddd solid 1px;
+    width: 95%;
+}
+
+input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, textarea:focus {
+    border: #ccccff solid 1px;
+    box-shadow: #ccccff 0px 0px 7px -3px;
+}
+
+input[type="button"], input[type="submit"], button {
+    padding: 10px;
+    border: solid 1px #c3c3c3;
+    border-radius: 4px;
+    background-color: #eaeaea;
+    box-shadow: #ccccff 0px 0px 10px -4px;
+}
+
+input[type="button"]:hover, input[type="submit"]:hover, button:hover {
+    box-shadow: #ccccff 0px 1px 10px -2px;
+    background-color: #efefef;
+}
+
+.message {
+    font-size: 15px;
+    text-align: center; 
+    padding: 20px; 
+    border: solid 1px #cccccc; 
+    border-radius: 3px; 
+    box-shadow: #ccccff 1px 1px 10px 1px;
+}
+
+.title-message {
+    font-size: 24px;
+    padding: 5px;
+}
+
+.subtitle-message {
+    font-size: 18px;
+}
+
+.warning {
+    background-color: #ffff99; 
+    padding: 10px; 
+    border: solid 3px #eff756; 
+    border-radius: 3px;
 }
 
 /**
@@ -119,10 +179,26 @@ a:hover {
 .tresult {
     border-collapse: collapse;
 }
+.tresult tr th {
+    padding: 10px;
+    border: solid 1px #cccccc;
+    background-color: #efefef;
+}
+
 .tresult tr td {
-    border: solid 1px #f2f2f2;
+    border-left: solid 1px #f2f2f2;
+    border-right: solid 1px #f2f2f2;
     padding: 5px;
     font-size: 13px;
+}
+
+.tresult tr {
+    border: solid 1px #cfcfcf;
+}
+
+.tresult tr:hover {
+    border: solid 1px #80cfe9;
+    background-color: #eaf7fb;
 }
 
 /**
