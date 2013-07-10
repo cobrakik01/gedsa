@@ -19,9 +19,6 @@
         <td>
             {{Form::text('nombre', (Input::old('nombre')) ? Input::old('nombre') : $album->nombre)}}
         </td>
-        <td>
-            {{$errors->first('nombre')}}
-        </td>
     </tr>
     <tr>
         <td colspan="2" align="center">
@@ -39,6 +36,12 @@
         </td>
     </tr>
 </table>
+{{Form::hidden('nombre_anterior','')}}
+@if($errors->first('errores'))
+    <div class="warning">
+        {{ $errors->first('errores') }}
+    </div>
+@endif
 {{ Form::hidden('id', $album->id) }}
 {{Form::close()}}
 @endsection

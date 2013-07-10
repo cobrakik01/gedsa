@@ -42,7 +42,7 @@
                 {{$album->id}}
             </td>
             <td>
-                {{HTML::link('albums_admin/ver_fotos/' . $album->get_dir() ,$album->nombre, array('title'=>'Click para ver las fotos del Album'))}}
+                {{HTML::link('albums_admin/ver_fotos/' . AlbumController::toDir($album) ,$album->nombre, array('title'=>'Click para ver las fotos del Album'))}}
             </td>
             <td>
                 {{HTML::link('administradores_admin/ver/' . base64_encode($album->administrador()->id) ,$album->administrador()->nombre, array('title'=>'Click para ver la informacion del Administador'))}}
@@ -57,7 +57,7 @@
                 {{$album->url}}
             </td>
             <td align="center">
-                {{HTML::link('albums_admin/eliminar/' . $album->get_dir(),'Eliminar')}}
+                {{HTML::link('albums_admin/eliminar/' . AlbumController::toDir($album),'Eliminar')}}
             </td>
         </tr>
         @else
@@ -66,7 +66,7 @@
                 {{$album->id}}
             </td>
             <td>
-                {{HTML::link('albums_admin/ver_fotos/' . $album->get_dir() ,$album->nombre, array('title'=>'Click para ver las fotos del Album'))}}
+                {{HTML::link('albums_admin/ver_fotos/' . AlbumController::toDir($album) ,$album->nombre, array('title'=>'Click para ver las fotos del Album'))}}
             </td>
             <td>
                 {{HTML::link('administradores_admin/ver/' . base64_encode($album->administrador()->id) ,$album->administrador()->nombre, array('title'=>'Click para ver la informacion del Administador'))}}

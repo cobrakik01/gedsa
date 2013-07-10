@@ -16,7 +16,7 @@
                 {{HTML::link('albums_admin/todos','Todos')}}
             </li>
             <li>
-                {{HTML::link('albums_admin/buscar','Buscar')}}
+                {{HTML::link('albums_admin/buscar_album','Buscar Álbum')}}
             </li>
             @yield_section
         </ul>

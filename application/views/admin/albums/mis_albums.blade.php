@@ -39,7 +39,7 @@
                 {{$album->id}}
             </td>
             <td>
-                {{HTML::link('albums_admin/ver_fotos/' . $album->get_dir() ,$album->nombre, array('title'=>'Click para ver las fotos del Album'))}}
+                {{HTML::link('albums_admin/ver_fotos/' . AlbumController::toDir($album) ,$album->nombre, array('title'=>'Click para ver las fotos del Album'))}}
             </td>
             <td>
                 {{$album->created_at}}
@@ -51,7 +51,7 @@
                 {{$album->url}}
             </td>
             <td align="center">
-                {{HTML::link('albums_admin/eliminar/' . $album->get_dir(),'Eliminar')}}
+                {{HTML::link('albums_admin/eliminar/' . AlbumController::toDir($album),'Eliminar')}}
             </td>
         </tr>
         @else
@@ -72,7 +72,7 @@
                 {{$album->url}}
             </td>
             <td align="center">
-                {{HTML::link('albums_admin/eliminar/' . $album->get_dir(),'Eliminar')}}
+                {{HTML::link('albums_admin/eliminar/' . AlbumController::toDir($album),'Eliminar')}}
             </td>
         </tr>
         @endif

@@ -78,6 +78,7 @@ input[type="button"]:hover, input[type="submit"]:hover, button:hover {
 }
 
 .warning {
+    text-align: center;
     background-color: #ffff99; 
     padding: 10px; 
     border: solid 3px #eff756; 

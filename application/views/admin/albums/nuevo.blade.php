@@ -39,5 +39,10 @@
         </td>
     </tr>
 </table>
+@if($errors->first('errores'))
+<div class="warning">
+    {{$errors->first('errores')}}
+</div>
+@endif
 {{Form::close()}}
 @endsection
