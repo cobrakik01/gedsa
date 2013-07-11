@@ -17,7 +17,7 @@ class Auth_Controller extends Base_Controller {
     }
 
     public function post_login() {
-        $us = Administrador::where('nombre', '=', Input::get('txtNombreUsuario'))->first();
+        $us = Administrador::where('nombre', '=', trim(Input::get('txtNombreUsuario')))->first();
         if ($us && $us->password == Input::get('txtPassword') && $us->activo) {
             Auth::login($us);
             return Redirect::to('admin');

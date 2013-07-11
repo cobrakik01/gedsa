@@ -54,7 +54,6 @@ class Albums_Admin_Controller extends Base_Controller {
     }
 
     public function post_cambiar_nombre_descripcion() {
-        //$f = new Laravel\File(); Renombrar Carpeta del album
         $cont = new AlbumController();
         $album = new Album();
         $album->nombre = Input::get('nombre');
@@ -69,16 +68,13 @@ class Albums_Admin_Controller extends Base_Controller {
     }
 
     public function get_buscar_album() {
-        return Laravel\View::make('admin.albums.buscar_album');
-    }
-
-    public function post_buscar_album() {
         $controlador = new AlbumController();
         $orden = Input::get('orden');
         $buscar = Input::get('buscar');
         $resultados = Input::get('resultados');
         $op = Input::get('filtro');
         $albums = null;
+
         try {
             switch ($op) {
                 case 0;
@@ -90,15 +86,17 @@ class Albums_Admin_Controller extends Base_Controller {
                 case 2:
                     $albums = $controlador->buscarPorFecha($buscar, true, $resultados, $orden);
                     break;
+                case 3:
+                    $albums = $controlador->buscarAlbumsPorNombreDeAdministrador($buscar, true, $resultados, $orden);
+                    break;
             }
+            return \Laravel\View::make('admin.albums.buscar_album')->with(array('albums' => $albums));
         } catch (NotifierValidatorException $ex) {
             $not = $ex->getNotification();
             if ($not->fails()) {
                 return \Laravel\Redirect::back()->with_errors($not);
             }
         }
-
-        return Laravel\View::make('admin.albums.buscar_album')->with(array('albums' => $albums));
     }
 
     public function get_ver_fotos($nombre_album = "") {

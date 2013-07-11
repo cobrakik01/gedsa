@@ -51,15 +51,24 @@ class AlbumController {
         return $albums;
     }
 
+    public function buscarAlbumsPorNombreDeAdministrador($nombreAdministrador, $resultados_por_pagina = AlbumController::RESULTADOS_POR_PAGINA, $orden = AlbumController::DESC) {
+        $admin = Administrador::find_by_name(trim($nombreAdministrador));
+        if (is_null($admin)) {
+            throw new NotifierValidatorException('<h3>Sin resultados</h3> El autor: ' . $nombreAdministrador . ', no existe');
+        }
+        $albums = $this->buscarAlbumsPorIdDeAdministrador($admin->id, $resultados_por_pagina, $orden);
+        return $albums;
+    }
+
     /**
      * 
      * @param Integer $id Id del Album que se buscara
-     * @param Integer $limite_por_pagina indica el numero de resultados por pagina que se presentaran en la vista
+     * @param Integer $resultados_por_pagina indica el numero de resultados por pagina que se presentaran en la vista
      * @return Paginator se puede acceder a los objetos de tipo Album por medio del atributo Paginator->results
      * y obtener los links de la paginacion por medio del metodo Paginator->links()
      */
-    public function buscarAlbumsPorIdDeAdministrador($id, $limite_por_pagina = self::RESULTADOS_POR_PAGINA) {
-        return Album::where('administradores_id', '=', $id)->paginate($limite_por_pagina);
+    public function buscarAlbumsPorIdDeAdministrador($id, $resultados_por_pagina = AlbumController::RESULTADOS_POR_PAGINA) {
+        return Album::where('administradores_id', '=', $id)->order_by('administradores_id')->paginate($resultados_por_pagina);
     }
 
     /**

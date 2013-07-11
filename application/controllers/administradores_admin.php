@@ -29,7 +29,6 @@ class Administradores_Admin_Controller extends Base_Controller {
         $rules = array(
             'nombre' => 'required',
             'app' => 'required',
-            //'apm' => 'required',
             'direccion' => 'required',
             'telefono' => 'required|integer',
             'email' => 'email',
@@ -78,7 +77,7 @@ class Administradores_Admin_Controller extends Base_Controller {
             'nombre' => 'required',
             'app' => 'required',
             'direccion' => 'required',
-            'telefono' => 'required|integer',
+            'telefono' => 'required|numeric',
             'email' => 'email',
             'password_old' => 'required|exists:' . Administrador::$table . ',password',
             'password' => 'required|min:4|different:nombre|different:nikname|confirmed',
@@ -113,9 +112,21 @@ class Administradores_Admin_Controller extends Base_Controller {
     public function get_eliminar($id) {
         $id = base64_decode($id);
         $us = Administrador::find($id);
-        $us_desc = DescripcionUsuario::find($us->descripcion_usuarios_id);
-        $us->delete();
-        $us_desc->delete();
+        if ($us->id == Auth::user()->id) {
+            return Message::showMessage('No te puedes eliminar a ti mismo', 'Advertencia');
+        }
+        if (Administrador::select()->count() <= 1) {
+            return Message::showMessage('Actualmente solo existe un Administrador, por lo que no se puede eliminar', 'Advertencia');
+        }
+
+        $us_desc = $us->descripcion();
+        try {
+            $us->delete();
+            $us_desc->delete();
+        } catch (Exception $ex) {
+            return Message::showMessage('No se puede remover del sistema al Administrador seleccionado, primero elimina todos los servicios, albumes, etc. que alla publicado dicho Administrador', 'Advertencia');
+            //$this->get_desactivar(base64_encode($id));
+        }
         return \Laravel\Redirect::back();
     }
 
@@ -134,6 +145,9 @@ class Administradores_Admin_Controller extends Base_Controller {
 
     public function get_desactivar($id) {
         $user = Administrador::find(base64_decode($id));
+        if (Administrador::select()->count() <= 1) {
+            return Message::showMessage('Actualmente solo hay un Administrador Activo, por lo que no lo puedes desactivar', 'Advertencia');
+        }
         $user->activo = false;
         $user->save();
         return Laravel\Redirect::back();
@@ -161,10 +175,6 @@ class Administradores_Admin_Controller extends Base_Controller {
     }
 
     public function get_buscar() {
-        return View::make('admin.administradores.buscar')->with(array('users' => null, 'us_desc' => null));
-    }
-
-    public function post_buscar() {
         $txtBuscar = Input::get('txtBuscar');
         $listFiltro = Input::get('listFiltro');
         $listOrden = Input::get('listOrden');
@@ -200,6 +210,7 @@ class Administradores_Admin_Controller extends Base_Controller {
                 break;
         }
         return View::make('admin.administradores.buscar')->with(array('users' => $users, 'us_desc' => $us_desc, 'txtBuscar' => $txtBuscar, 'listFiltro' => $listFiltro, 'listOrden' => $listOrden, 'listResultadosPorPagina' => $listResultadosPorPagina));
+        //return View::make('admin.administradores.buscar')->with(array('users' => null, 'us_desc' => null));
     }
 
 }

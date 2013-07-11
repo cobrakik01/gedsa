@@ -7,7 +7,7 @@
 @section('contenido_admin')
 <h3>Busquedas con filtros</h3>
     
-    {{Form::open()}}
+    {{Form::open('administradores_admin/buscar','GET')}}
         <table align="center">
             <tr>
                 <td align="center">
@@ -85,7 +85,7 @@
                 </tr>
                 @endforeach
             </table>
-            {{$users->links()}}
+            {{$users->appends(array('txtBuscar'=>Input::get('txtBuscar'),'listFiltro'=>Input::get('listFiltro'),'listOrden'=>Input::get('listOrden'),'listResultadosPorPagina'=>Input::get('listResultadosPorPagina')))->links()}}
         @else
         <table align="center">
             <tr>

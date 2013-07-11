@@ -14,6 +14,7 @@
             <ul>
                 @section('menu')
                 <li>{{HTML::link('perfil_admin', 'Perfil')}}</li>
+                <li>{{HTML::link('#', 'Presentaciones')}}</li>
                 <li>{{HTML::link('albums_admin', 'Albums')}}</li>
                 <li>{{HTML::link('servicios_admin', 'Servicios')}}</li>
                 <li>{{HTML::link('administradores_admin', 'Administradores')}}</li>

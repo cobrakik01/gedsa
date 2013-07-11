@@ -10,7 +10,7 @@
 
 @section('contenido_albums')
 <h3>Buscar Album</h3>
-{{Form::open()}}
+{{Form::open('albums_admin/buscar_album','GET')}}
 <table align="center" style="margin-bottom:  20px;">
     <tr>
         <th align="center">
@@ -38,6 +38,7 @@
                 <option value="0">Por Id</option>
                 <option value="1">Por Nombre</option>
                 <option value="2">Por Fecha (aaaa-mm-dd)</option>
+                <option value="3">Por Autor</option>
             </select>
             <!-- {{Form::select('filtro', array('Por Id', 'Por Fecha'), array(0, 1))}} -->
         </td>
@@ -61,7 +62,11 @@
     </tr>
 </table>
 {{Form::close()}}
-@if(isset($albums))
+@if($errors->first('errores'))
+<div class="message">
+    {{$errors->first('errores')}}
+</div>
+@elseif(isset($albums))
 <table class="tresult" align='center'>
     <tr>
         <th>
@@ -138,10 +143,7 @@
         @endif
     @endforeach
 </table>
-@elseif($errors->first('errores'))
-<div class="message">
-    {{$errors->first('errores')}}
-</div>
+{{$albums->appends(array('buscar'=>Input::get('buscar'),'filtro'=>Input::get('filtro'),'orden'=>Input::get('orden'),'resultados'=>Input::get('resultados')))->links()}}
 @else
 <div class="message" style="text-align: justify;">
     <h2> Recomendaciones </h2>

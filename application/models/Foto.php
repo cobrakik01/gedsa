@@ -18,10 +18,14 @@ class Foto extends Eloquent {
         return Administrador::where('id', '=', $this->administradores_id)->first();
         //return $this->belongs_to('DescripcionUsuario'); // indica que contiene la clave foranea de la tabla DescripcionUsuario
     }
-    
+
     public function album() {
         return Album::where('id', '=', $this->albums_id)->first();
         //return $this->belongs_to('DescripcionUsuario'); // indica que contiene la clave foranea de la tabla DescripcionUsuario
+    }
+
+    public function shortName($length = 17) {
+        return (strlen($this->nombre) < $length) ? $this->nombre : substr($this->nombre, 0, $length) . ' ... .' . Laravel\File::extension($this->nombre);
     }
 
 }
