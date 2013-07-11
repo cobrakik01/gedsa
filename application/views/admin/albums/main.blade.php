@@ -1,7 +1,7 @@
 @layout('admin.main')
 
 @section('contenido')
-<h2 style="text-align: right;">Administración de Albums</h2>
+<h2 style="text-align: right;"> {{HTML::link('perfil_admin',Auth::user()->nombre)}} - Administración de Albums</h2>
     @section('menu_albums')
     <div class="menu">
         <ul>

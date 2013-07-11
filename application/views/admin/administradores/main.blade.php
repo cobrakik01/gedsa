@@ -5,7 +5,7 @@
 @endsection
 
 @section('contenido')
-    <h2 style="text-align: right;">Administradores</h2>
+    <h2 style="text-align: right;"> {{HTML::link('perfil_admin',Auth::user()->nombre)}} - Administradores</h2>
     @section('menu_admin')
     <div class="menu">
         <ul>
