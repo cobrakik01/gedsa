@@ -14,9 +14,9 @@
             <ul>
                 @section('menu')
                 <li>{{HTML::link('perfil_admin', 'Perfil de ' . @Auth::user()->nombre)}}</li>
-                <li>{{HTML::link('#', 'Presentaciones')}}</li>
-                <li>{{HTML::link('albums_admin', 'Albums')}}</li>
-                <li>{{HTML::link('servicios_admin', 'Servicios')}}</li>
+                <li>{{HTML::link('presentaciones_admin', 'Administrar Presentaciones')}}</li>
+                <li>{{HTML::link('albums_admin', 'Administrar Albums')}}</li>
+                <li>{{HTML::link('servicios_admin', 'Administrar Servicios')}}</li>
                 <li>{{HTML::link('administradores_admin', 'Administradores')}}</li>
                 <li>{{HTML::link('admin/logout', 'Cerrar Sesion')}}</li>
                 @yield_section

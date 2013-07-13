@@ -67,6 +67,7 @@
     </div>
     <h3>
         Fotos del Album <em>"{{$album->nombre}}"</em>
+        <span style="font-size: 13px; position: relative; top: -20px; left: -100px;">{{$fotos->total}} Fotos encontradas</span>
     </h3>
     <div style="padding: 10px; margin-bottom: 20px;">
         {{$album->descripcion}}
@@ -78,8 +79,15 @@
                     <li>
                         <div class="container-photo">
                             {{ HTML::image($foto->url, $foto->nombre, array('border'=>'0')) }}
-                            <div class="description-photo-bg">
-                            </div>
+                        <ul class="controls-photo">
+                            <li>
+                                {{HTML::link('albums_admin/editar_foto/' . $foto->id,'', array('class'=>'btnEditControl', 'title'=>'Editar Foto'))}}
+                            </li>
+                            <li>
+                                {{HTML::link('albums_admin/eliminar_foto/' . $foto->id,'', array('class'=>'btnDeleteControl', 'title'=>'Eliminar Foto'))}}
+                            </li>
+                            </ul>
+                            <div class="description-photo-bg"></div>
                             <div class="description-photo">
                                 {{$foto->shortName()}}
                             </div>
@@ -88,5 +96,12 @@
                 @endforeach
             </ul>
         </div>
+        <table align='center'>
+            <tr>
+                <td>
+                    {{$fotos->links()}}
+                </td>
+            </tr>
+        </table>
     @endif
 @endsection

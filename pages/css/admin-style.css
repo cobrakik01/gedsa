@@ -102,11 +102,11 @@ input[type="button"]:hover, input[type="submit"]:hover, button:hover {
  */
 .menu {
     background-color: #1c1c1c;
-    border-top: solid 1px #3d3d3d;
 }
 
 .menu ul {
     margin: 0;
+    padding: 0px;
     list-style: none;
     overflow: hidden;
 }
@@ -120,12 +120,13 @@ input[type="button"]:hover, input[type="submit"]:hover, button:hover {
     text-decoration: none;
     display: block;
     padding: 5px;
-    border-top: solid 1px transparent;
+    border-right: solid 1px #68655f;
+    border-bottom: solid 2px #fbaf18;
 }
 
 .menu ul li a:hover {
-    background-color: #2b2b2b;
-    border-top: solid 1px #232323;
+    background-color: #eaa316;
+    border-bottom: solid 2px #ba8211;
     color: #ffffff;
 }
 
@@ -270,21 +271,63 @@ input[type="button"]:hover, input[type="submit"]:hover, button:hover {
     height: 100%;
 }
 
+.controls-photo {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    /*background-color: #5c5c5c;*/
+    border-radius: 3px;
+    overflow: hidden;
+    width: 60px;
+    height: 30px;
+    position: relative;
+    top: -204px;
+    left: 143px;
+    z-index: 2;
+}
+
+.controls-photo li {
+    float: left;
+}
+
+.controls-photo li a {
+    display: block;
+    width: 24px;
+    height: 24px;
+}
+
+.controls-photo .btnEditControl {
+    background-image: url(/pages/img/sys_admin/edit_normal_24px.png);
+}
+
+.controls-photo .btnEditControl:hover {
+    background-image: url(/pages/img/sys_admin/edit_hover_24px.png);
+}
+
+.controls-photo .btnDeleteControl {
+    background-image: url(/pages/img/sys_admin/delete_normal_24px.png);
+}
+.controls-photo .btnDeleteControl:hover {
+    background-image: url(/pages/img/sys_admin/delete_hover_24px.png);
+}
+
 .container-photo .description-photo {
     font-size: 15px;
     padding: 5px;
     color: #d8d8d8;
-    top: -80px;
-    height: 80px;
+    top: -120px;
+    height: 30px;
     position: relative;
+    z-index: 1;
 }
 
 .container-photo .description-photo-bg {
-    top: -40px;
+    top: -83px;
     height: 40px;
     background-color: #000000;
     position: relative;
     opacity: 0.3;
+    z-index: 0;
 }
 
 .container-photo:hover .description-photo {

@@ -52,11 +52,14 @@ class AlbumController {
     }
 
     public function buscarAlbumsPorNombreDeAdministrador($nombreAdministrador, $resultados_por_pagina = AlbumController::RESULTADOS_POR_PAGINA, $orden = AlbumController::DESC) {
-        $admin = Administrador::find_by_name(trim($nombreAdministrador));
+        $admin = Administrador::find_by_name($nombreAdministrador);
         if (is_null($admin)) {
             throw new NotifierValidatorException('<h3>Sin resultados</h3> El autor: ' . $nombreAdministrador . ', no existe');
         }
-        $albums = $this->buscarAlbumsPorIdDeAdministrador($admin->id, $resultados_por_pagina, $orden);
+        $albums = Album::where('administradores_id', '=', $admin->id)->order_by('administradores_id', $orden)->paginate($resultados_por_pagina);
+        if ($albums->total == 0) {
+            throw new NotifierValidatorException('<h3>Sin resultados</h3> El autor: ' . $nombreAdministrador . ', no tiene álbumes publicados');
+        }
         return $albums;
     }
 

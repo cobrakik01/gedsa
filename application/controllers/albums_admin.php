@@ -70,7 +70,7 @@ class Albums_Admin_Controller extends Base_Controller {
     public function get_buscar_album() {
         $controlador = new AlbumController();
         $orden = Input::get('orden');
-        $buscar = Input::get('buscar');
+        $buscar = trim(Input::get('buscar'));
         $resultados = Input::get('resultados');
         $op = Input::get('filtro');
         $albums = null;
@@ -87,7 +87,7 @@ class Albums_Admin_Controller extends Base_Controller {
                     $albums = $controlador->buscarPorFecha($buscar, true, $resultados, $orden);
                     break;
                 case 3:
-                    $albums = $controlador->buscarAlbumsPorNombreDeAdministrador($buscar, true, $resultados, $orden);
+                    $albums = $controlador->buscarAlbumsPorNombreDeAdministrador($buscar, $resultados, $orden);
                     break;
             }
             return \Laravel\View::make('admin.albums.buscar_album')->with(array('albums' => $albums));
@@ -105,7 +105,7 @@ class Albums_Admin_Controller extends Base_Controller {
         if (is_null($album)) {
             return Message::showMessage('Esta pagina no esta disponible');
         }
-        $fotos = $album->fotos();
+        $fotos = $album->fotos(8);
         return Laravel\View::make('admin.albums.ver')->with(array('album' => $album, 'fotos' => $fotos));
     }
 
@@ -129,6 +129,56 @@ class Albums_Admin_Controller extends Base_Controller {
             return Message::showMessage($ex->getMessage());
         }
         return \Laravel\Redirect::back();
+    }
+
+    public function get_editar_foto($id = "") {
+        $controlador = new FotoController();
+        try {
+            if ($id == "") {
+                return Message::showMessage('No se selecciono ninguna foto para editar', 'Pagina no disponible');
+            }
+            $foto = $controlador->buscarFotoPorId($id);
+            return \Laravel\View::make('admin.albums.editar_foto')->with(array('foto' => $foto));
+        } catch (NotifierValidatorException $ex) {
+            return Message::showMessage($ex->getMessage());
+        }
+    }
+
+    public function post_editar_foto() {
+        $controlador = new FotoController();
+        $foto = $controlador->buscarFotoPorId(Input::get('id'));
+        try {
+            $foto->nombre = trim(Input::get('nombre'));
+            $foto->descripcion = trim(Input::get('descripcion'));
+            $controlador->editarFotoPorId($foto->id, $foto);
+        } catch (NotifierValidatorException $ex) {
+            $val = $ex->getNotification();
+            if ($val->fails()) {
+                return \Laravel\Redirect::back()->with_input()->with_errors($val);
+            }
+            return Message::showMessage($ex->getMessage(), 'Advertencia');
+        }
+        return $this->get_ver_fotos($foto->album()->get_dir());
+    }
+
+    public function get_eliminar_foto($id) {
+        if (trim($id) == "") {
+            return Message::showMessage('Pagina no disponible');
+        }
+        $controlador = new FotoController();
+        $album_dir = "";
+        try {
+            $foto = $controlador->buscarFotoPorId($id);
+            $album_dir = $foto->album()->get_dir();
+            $controlador->eliminarFotoPorId($id);
+        } catch (NotifierValidatorException $ex) {
+            $val = $ex->getNotification();
+            if ($val->fails()) {
+                return \Laravel\Redirect::back()->with_input()->with_errors($val);
+            }
+            return Message::showMessage($ex->getMessage(), 'Advertencia');
+        }
+        return $this->get_ver_fotos($album_dir);
     }
 
 }

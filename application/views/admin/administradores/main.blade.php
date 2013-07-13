@@ -10,19 +10,19 @@
     <div class="menu">
         <ul>
             <li>
-                {{HTML::link('administradores_admin/nuevo','Nuevo')}}
+                {{HTML::link('administradores_admin/nuevo','Nuevo administrador')}}
             </li>
             <li>
-                {{HTML::link('administradores_admin/result/todos','Todos')}}
+                {{HTML::link('administradores_admin/result/todos','Todos los administradores')}}
             </li>
             <li>
-                {{HTML::link('administradores_admin/result/activos','Activos')}}
+                {{HTML::link('administradores_admin/result/activos','Administradores activos')}}
             </li>
             <li>
-                {{HTML::link('administradores_admin/result/inactivos','Inactivos')}}
+                {{HTML::link('administradores_admin/result/inactivos','Administradores inactivos')}}
             </li>
             <li>
-                {{HTML::link('administradores_admin/buscar','Buscar')}}
+                {{HTML::link('administradores_admin/buscar','Buscar administradores')}}
             </li>
         </ul>
     </div>
