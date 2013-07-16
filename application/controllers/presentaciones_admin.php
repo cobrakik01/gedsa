@@ -16,11 +16,16 @@ class Presentaciones_Admin_Controller extends Base_Controller {
         parent::__construct();
         $this->filter('before', 'auth');
     }
-    
-    public function get_index(){
+
+    public function get_index() {
+        Terminar la seleccion de las fotos de la presentacion de la pagina de inicio(Cliente)
         return \Laravel\View::make('admin.presentaciones.mis_presentaciones');
     }
-    
+
+    public function get_mis_presentaciones() {
+        return \Laravel\View::make('admin.presentaciones.mis_presentaciones');
+    }
+
 }
 
 ?>

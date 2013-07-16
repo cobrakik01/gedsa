@@ -39,6 +39,10 @@ class Album extends Eloquent {
     public function num_photos() {
         return Foto::where('albums_id', '=', $this->id)->count();
     }
+    
+    public function vacio(){
+        return $this->num_fotos() == 0;
+    }
 
 }
 

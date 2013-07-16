@@ -13,6 +13,8 @@ class Admin {
         Router::controller('albums_admin');
         Router::controller('presentaciones_admin');
         Router::controller('administradores_admin');
+        
+        Router::controller('albums_admin_ajax');
     }
 
 }

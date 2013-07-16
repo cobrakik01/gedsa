@@ -4,11 +4,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Panel de Administración GEDSA</title>
         {{HTML::style('pages/css/admin-style.css')}}
+        <!-- {{HTML::style('pages/css/jquery-ui.css')}} -->
+        {{HTML::style('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css')}}
+        {{HTML::script('http://code.jquery.com/jquery-1.9.1.js')}}
+        {{HTML::script('http://code.jquery.com/ui/1.10.3/jquery-ui.js')}}
     </head>
     <body>
-        <div id="logo">
-            <div style="font-size: 20px; padding-left: 50px; padding-top: 20px;">GEDSA</div>
-            <div style="padding-bottom: 20px; padding-left: 20px;">Panel de Administración</div>
+        <div id="logo" style="height: 100px;">
+            <!-- <div style="font-size: 20px; padding-left: 50px; padding-top: 20px;">GEDSA</div> -->
+            <!-- <div style="padding-bottom: 20px; padding-left: 20px;">Panel de Administración</div> -->
         </div>
         <div class="menu">
             <ul>
