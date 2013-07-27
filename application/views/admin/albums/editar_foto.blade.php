@@ -35,7 +35,7 @@
     </tr>
     <tr>
         <td colspan="2" align="center">
-            {{Form::submit('Crear Album')}}
+            {{Form::submit('Actualizar informacion del álbum')}}
         </td>
     </tr>
 </table>

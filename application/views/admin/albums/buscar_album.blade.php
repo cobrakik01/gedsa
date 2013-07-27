@@ -10,7 +10,7 @@
 
 @section('contenido_albums')
 <h3>Buscar Album</h3>
-{{Form::open('albums_admin/buscar_album','GET')}}
+{{Form::open('admin/albumes/buscar_album','GET')}}
 <table align="center" style="margin-bottom:  20px;">
     <tr>
         <th align="center">
@@ -98,10 +98,10 @@
                 {{$album->id}}
             </td>
             <td>
-                {{HTML::link('albums_admin/ver_fotos/' . AlbumController::toDir($album) ,$album->nombre, array('title'=>'Click para ver las fotos del Album'))}}
+                {{HTML::link('admin/albumes/ver_fotos/' . AlbumController::toDir($album) ,$album->nombre, array('title'=>'Click para ver las fotos del Album'))}}
             </td>
             <td>
-                {{HTML::link('administradores_admin/ver/' . base64_encode($album->administrador()->id) ,$album->administrador()->nombre, array('title'=>'Click para ver la informacion del Administador'))}}
+                {{HTML::link('admin/albumes/ver/' . base64_encode($album->administrador()->id) ,$album->administrador()->nombre, array('title'=>'Click para ver la informacion del Administador'))}}
             </td>
             <td>
                 {{$album->created_at}}
@@ -113,7 +113,7 @@
                 {{$album->url}}
             </td>
             <td align="center">
-                {{HTML::link('albums_admin/eliminar/' . AlbumController::toDir($album),'Eliminar')}}
+                {{HTML::link('admin/albumes/eliminar/' . AlbumController::toDir($album),'Eliminar')}}
             </td>
         </tr>
         @else
@@ -122,10 +122,10 @@
                 {{$album->id}}
             </td>
             <td>
-                {{HTML::link('albums_admin/ver_fotos/' . AlbumController::toDir($album) ,$album->nombre, array('title'=>'Click para ver las fotos del Album'))}}
+                {{HTML::link('admin/albumes/ver_fotos/' . AlbumController::toDir($album) ,$album->nombre, array('title'=>'Click para ver las fotos del Album'))}}
             </td>
             <td>
-                {{HTML::link('administradores_admin/ver/' . base64_encode($album->administrador()->id) ,$album->administrador()->nombre, array('title'=>'Click para ver la informacion del Administador'))}}
+                {{HTML::link('admin/albumes/ver/' . base64_encode($album->administrador()->id) ,$album->administrador()->nombre, array('title'=>'Click para ver la informacion del Administador'))}}
             </td>
             <td>
                 {{$album->created_at}}
@@ -137,7 +137,7 @@
                 {{$album->url}}
             </td>
             <td align="center">
-                {{HTML::link('albums_admin/eliminar/' . $album->get_dir(),'Eliminar')}}
+                {{HTML::link('admin/albumes/eliminar/' . $album->get_dir(),'Eliminar')}}
             </td>
         </tr>
         @endif

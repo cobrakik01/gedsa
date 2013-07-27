@@ -8,6 +8,7 @@
 class Album extends Eloquent {
 
     public static $table = "albums";
+    public static $timestamps = true;
 
     public function get_dir() {
         $dir = Format::textToDirFormat($this->nombre);

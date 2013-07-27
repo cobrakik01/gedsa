@@ -5,7 +5,7 @@
 @endsection
 
 @section('contenido')
-Bienvenido <strong>{{HTML::span($user->nombre, array('style' => 'font-size: 20px;'))}}</strong> {{HTML::link('administradores_admin/editar/' . base64_encode($user->id),'Editar')}}
+Bienvenido <strong>{{HTML::span($user->nombre, array('style' => 'font-size: 20px;'))}}</strong> {{HTML::link('admin/administradores/ver/' . base64_encode($user->id),'Editar')}}
 <hr />
 <p>
     Nombre: {{$us_desc->nombre . ' ' . $us_desc->apellido_paterno . ' ' . $us_desc->apellido_materno}} <br />

@@ -6,17 +6,17 @@
  */
 
 /**
- * Description of auth
+ * Description of logout
  *
  * @author cobrakik
  */
-class Auth_Controller extends Base_Controller {
+class Admin_Login_Controller extends Base_Controller {
 
-    public function get_login() {
-        return View::make('auth.login');
+    public function get_index() {
+        return View::make('admin.login');
     }
 
-    public function post_login() {
+    public function post_index() {
         $us = Administrador::where('nombre', '=', trim(Input::get('txtNombreUsuario')))->first();
         if ($us && $us->password == Input::get('txtPassword') && $us->activo) {
             Auth::login($us);

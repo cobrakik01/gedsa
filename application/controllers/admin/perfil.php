@@ -10,7 +10,7 @@
  *
  * @author cobrakik
  */
-class Perfil_Admin_Controller extends Base_Controller {
+class Admin_Perfil_Controller extends Base_Controller {
 
     public function __construct() {
         parent::__construct();

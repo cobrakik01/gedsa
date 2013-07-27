@@ -10,7 +10,7 @@
 
 @section('contenido_albums')
 <h3>Nuevo Album</h3>
-{{Form::open('albums_admin/nuevo','POST')}}
+{{Form::open()}}
 <table align='center'>
     <tr>
         <td>

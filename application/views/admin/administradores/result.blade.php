@@ -31,15 +31,15 @@
             @endif
             </td>
             <td>
-                {{HTML::link('administradores_admin/ver/' . base64_encode($us->id),'Ver')}}
+                {{HTML::link('admin/administradores/ver/' . base64_encode($us->id),'Ver')}}
                 @if($us->activo)
-                {{HTML::link('administradores_admin/desactivar/' . base64_encode($us->id),'Desactivar')}}
+                {{HTML::link('admin/administradores/desactivar/' . base64_encode($us->id),'Desactivar')}}
                 @else
-                {{HTML::link('administradores_admin/activar/' . base64_encode($us->id),'Activar')}}
+                {{HTML::link('admin/administradores/activar/' . base64_encode($us->id),'Activar')}}
                 @endif
                 
-                {{HTML::link('administradores_admin/editar/' . base64_encode($us->id),'Editar')}}
-                {{HTML::link('administradores_admin/eliminar/' . base64_encode($us->id),'Eliminar')}}
+                {{HTML::link('admin/administradores/editar/' . base64_encode($us->id),'Editar')}}
+                {{HTML::link('admin/administradores/eliminar/' . base64_encode($us->id),'Eliminar')}}
             </td>
         </tr>
         @endforeach

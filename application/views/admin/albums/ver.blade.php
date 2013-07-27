@@ -16,7 +16,7 @@
         </div>
         @endif
         <div>
-            {{Form::open_for_files('albums_admin/subir_foto/')}}
+            {{Form::open_for_files('admin/albumes/subir_foto/')}}
             <table align="center" border="0">
                 <tr>
                     <td align="right">{{ Form::label('nombre','Nombre') }}</td>
@@ -63,7 +63,7 @@
     </div>
     
     <div style="text-align: right;">
-        {{ HTML::link('albums_admin/cambiar_nombre_descripcion/' . AlbumController::toDir($album),'Cambiar nombre y/o descripción.') }}
+        {{ HTML::link('admin/albumes/cambiar_nombre_descripcion/' . AlbumController::toDir($album),'Cambiar nombre y/o descripción.') }}
     </div>
     <h3>
         Fotos del Album <em>"{{$album->nombre}}"</em>
@@ -81,10 +81,10 @@
                             {{ HTML::image($foto->url, $foto->nombre, array('border'=>'0')) }}
                         <ul class="controls-photo">
                             <li>
-                                {{HTML::link('albums_admin/editar_foto/' . $foto->id,'', array('class'=>'btnEditControl', 'title'=>'Editar Foto'))}}
+                                {{HTML::link('admin/albumes/editar_foto/' . $foto->id,'', array('class'=>'btnEditControl', 'title'=>'Editar Foto'))}}
                             </li>
                             <li>
-                                {{HTML::link('albums_admin/eliminar_foto/' . $foto->id,'', array('class'=>'btnDeleteControl', 'title'=>'Eliminar Foto'))}}
+                                {{HTML::link('admin/albumes/eliminar_foto/' . $foto->id,'', array('class'=>'btnDeleteControl', 'title'=>'Eliminar Foto'))}}
                             </li>
                             </ul>
                             <div class="description-photo-bg"></div>

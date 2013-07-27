@@ -7,7 +7,7 @@
 @section('contenido_admin')
 <h3>Busquedas con filtros</h3>
     
-    {{Form::open('administradores_admin/buscar','GET')}}
+    {{Form::open('admin/administradores/buscar','GET')}}
         <table align="center">
             <tr>
                 <td align="center">
@@ -72,15 +72,15 @@
                     @endif
                     </td>
                     <td>
-                        {{HTML::link('administradores_admin/ver/' . base64_encode($us->id),'Ver')}}
+                        {{HTML::link('admin/administradores/ver/' . base64_encode($us->id),'Ver')}}
                         @if($us->activo)
-                        {{HTML::link('administradores_admin/desactivar/' . base64_encode($us->id),'Desactivar')}}
+                        {{HTML::link('admin/administradores/desactivar/' . base64_encode($us->id),'Desactivar')}}
                         @else
-                        {{HTML::link('administradores_admin/activar/' . base64_encode($us->id),'Activar')}}
+                        {{HTML::link('admin/administradores/activar/' . base64_encode($us->id),'Activar')}}
                         @endif
 
-                        {{HTML::link('administradores_admin/editar/' . base64_encode($us->id),'Editar')}}
-                        {{HTML::link('administradores_admin/eliminar/' . base64_encode($us->id),'Eliminar')}}
+                        {{HTML::link('admin/administradores/editar/' . base64_encode($us->id),'Editar')}}
+                        {{HTML::link('admin/administradores/eliminar/' . base64_encode($us->id),'Eliminar')}}
                     </td>
                 </tr>
                 @endforeach
@@ -123,15 +123,15 @@
                         @endif
                     </td>
                     <td>
-                        {{HTML::link('administradores_admin/ver/' . base64_encode($desc->administrador()->id),'Ver')}}
+                        {{HTML::link('admin/administradores/ver/' . base64_encode($desc->administrador()->id),'Ver')}}
                         @if($desc->administrador()->activo)
-                        {{HTML::link('administradores_admin/desactivar/' . base64_encode($desc->administrador()->id),'Desactivar')}}
+                        {{HTML::link('admin/administradores/desactivar/' . base64_encode($desc->administrador()->id),'Desactivar')}}
                         @else
-                        {{HTML::link('administradores_admin/activar/' . base64_encode($desc->administrador()->id),'Activar')}}
+                        {{HTML::link('admin/administradores/activar/' . base64_encode($desc->administrador()->id),'Activar')}}
                         @endif
 
-                        {{HTML::link('administradores_admin/editar/' . base64_encode($desc->administrador()->id),'Editar')}}
-                        {{HTML::link('administradores_admin/eliminar/' . base64_encode($desc->administrador()->id),'Eliminar')}}
+                        {{HTML::link('admin/administradores/editar/' . base64_encode($desc->administrador()->id),'Editar')}}
+                        {{HTML::link('admin/administradores/eliminar/' . base64_encode($desc->administrador()->id),'Eliminar')}}
                     </td>
                     <td>
                         {{$desc->nombre . ' ' . $desc->apellido_paterno . ' ' . $desc->apellido_materno}}

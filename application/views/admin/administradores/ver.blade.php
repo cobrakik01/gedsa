@@ -55,7 +55,7 @@
             </tr>
             <tr>
                 <td colspan="2" align='center'>
-                    {{HTML::link('administradores_admin/editar/' . base64_encode($us_desc->administrador()->id),'Editar')}}
+                    {{HTML::link('admin/administradores/editar/' . base64_encode($us_desc->administrador()->id),'Editar')}}
                 </td>
             </tr>
         </table>

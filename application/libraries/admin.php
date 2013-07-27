@@ -8,13 +8,22 @@
 class Admin {
 
     public static function controllers() {
-        Router::controller('admin');
-        Router::controller('perfil_admin');
-        Router::controller('albums_admin');
-        Router::controller('presentaciones_admin');
-        Router::controller('administradores_admin');
+        /**
+         * Normal
+         */
+        Router::controller('admin.home');
+        Router::controller('admin.perfil');
+        Router::controller('admin.albumes');
+        Router::controller('admin.presentaciones');
+        Router::controller('admin.login');
+        Router::controller('admin.logout');
+        Router::controller('admin.administradores');
         
-        Router::controller('albums_admin_ajax');
+        /*
+         * Ajax
+         */
+        Router::controller('admin.albumes_ajax');
+        Router::controller('admin.presentaciones_ajax');
     }
 
 }

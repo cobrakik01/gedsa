@@ -13,6 +13,7 @@
 class DescripcionUsuario extends Eloquent {
 
     public static $table = "descripcion_usuarios";
+    public static $timestamps = true;
 
     public function administrador() {
         return Administrador::where('descripcion_usuarios_id', '=', $this->id)->first();

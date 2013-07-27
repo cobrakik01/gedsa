@@ -199,12 +199,7 @@ class AlbumController {
         if (is_null($album)) {
             throw new Exception('El album que se quiere eliminar no existe');
         }
-        if ($file->exists($album->url)) {
-            $file->rmdir($album->url);
-        }
-        if ($file->exists($album->url)) {
-            throw new Exception('El album que se quiere eliminar no existe');
-        }
+
         if ($album->num_photos() > 0) {
             $nRowsOld = $album->num_photos();
             $nRows = $album->delete_all_photos();
@@ -212,7 +207,16 @@ class AlbumController {
                 throw new Exception('Ocurrio un error al eliminar las fotos del album: ' . $album->nombre);
             }
         }
+
+        $url = $album->url;
         $album->delete();
+        if ($file->exists($url)) {
+            $file->rmdir($url);
+        }
+        if ($file->exists($url)) {
+            throw new Exception('El album que se quiere eliminar no existe');
+        }
+        // colocar la opcion de eliminar album y/o foto aun que las fotos o el album fisico no exista, pero exista en la base de datos
     }
 
     public function subirFoto($nombre_album, $descripcion, $key_foto, $nombre_foto = "", $rules = array()) {
@@ -221,7 +225,7 @@ class AlbumController {
         $validation = \Laravel\Validator::make(\Laravel\Input::all(), $rules);
 
         if ($validation->fails()) {
-            return $validation;
+            throw new NotifierValidatorException("Selecciona una foto");
         }
 
         $url_album = self::ALBUMS_PATH . Format::textToDirFormat($nombre_album);

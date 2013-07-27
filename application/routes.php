@@ -32,12 +32,12 @@
 |
 */
 
-/*
+
 Route::get('/', function()
 {
-	return View::make('home.index');
+	//return View::make('home.index');
+        return \Laravel\Redirect::to('home');
 });
- */
 
 /*
 |--------------------------------------------------------------------------
@@ -110,11 +110,7 @@ Route::filter('csrf', function()
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::to('login');
-});
-
-Route::get('login', function(){
-    return View::make('login.login');
+	if (Auth::guest()) return Redirect::to('admin/login');
 });
 
 /**
@@ -135,4 +131,4 @@ Client::controllers();
  */
 Admin::controllers();
 
-Route::any('login', 'auth@login');
+// Route::any('login', 'auth@login'); Utiliza un restful en concreto de un controlador sin ne sesidad de registrar toda la clase controlador

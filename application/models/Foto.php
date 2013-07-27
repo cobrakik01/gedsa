@@ -13,6 +13,7 @@
 class Foto extends Eloquent {
 
     public static $table = "fotos";
+    public static $timestamps = true;
 
     public function administrador() {
         return Administrador::where('id', '=', $this->administradores_id)->first();
@@ -26,6 +27,10 @@ class Foto extends Eloquent {
 
     public function shortName($length = 17) {
         return (strlen($this->nombre) < $length) ? $this->nombre : substr($this->nombre, 0, $length) . ' ... .' . Laravel\File::extension($this->nombre);
+    }
+
+    public function shortDescription($length = 17) {
+        return Format::shortText($this->descripcion, $length);
     }
 
     public function getExtension() {
@@ -56,6 +61,10 @@ class Foto extends Eloquent {
 
     public static function find_by_name($nombre) {
         return Foto::where('nombre', 'like', $nombre . '%')->first();
+    }
+
+    public function presentaciones() {
+        return Presentacion::join('presentaciones_has_fotos', 'presentaciones_has_fotos.presentacion_administrador_id', '=', 'presentaciones.administradores_id')->paginate();
     }
 
 }

@@ -134,6 +134,10 @@ class Format {
         return $b;
     }
 
+    public static function shortText($txt, $length = 17) {
+        return (strlen($txt) < $length) ? $txt : substr($txt, 0, $length) . ' ... ';
+    }
+
 }
 
 ?>

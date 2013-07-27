@@ -10,7 +10,7 @@
 
 @section('contenido_albums')
 <h3>Cambiar nombre y/o descripción.</h3>
-{{Form::open('albums_admin/cambiar_nombre_descripcion','POST')}}
+{{Form::open('admin/albumes/cambiar_nombre_descripcion','POST')}}
 <table align='center'>
     <tr>
         <td>
@@ -32,7 +32,7 @@
     </tr>
     <tr>
         <td colspan="2" align="center">
-            {{Form::submit('Crear Album')}}
+            {{Form::submit('Cambiar nombre y/o descripción')}}
         </td>
     </tr>
 </table>

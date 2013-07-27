@@ -10,7 +10,7 @@
  *
  * @author cobrakik
  */
-class Administradores_Admin_Controller extends Base_Controller {
+class Admin_Administradores_Controller extends Base_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -18,7 +18,7 @@ class Administradores_Admin_Controller extends Base_Controller {
     }
 
     public function get_index() {
-        return Redirect::to('administradores_admin/result/todos');
+        return $this->get_result('todos');
     }
 
     public function get_nuevo() {
@@ -57,7 +57,7 @@ class Administradores_Admin_Controller extends Base_Controller {
         $us->activo = true;
 
         $us->save();
-        return \Laravel\Redirect::to('administradores_admin/result/todos');
+        return $this->get_result('todos');
     }
 
     public function get_editar($id) {
@@ -106,7 +106,7 @@ class Administradores_Admin_Controller extends Base_Controller {
         $us->activo = true;
 
         $us->save();
-        return \Laravel\Redirect::to('administradores_admin/result/todos');
+        return $this->get_result('todos');
     }
 
     public function get_eliminar($id) {

@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 
-class Albums_Admin_Controller extends Base_Controller {
+class Admin_Albumes_Controller extends Base_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -13,7 +13,7 @@ class Albums_Admin_Controller extends Base_Controller {
     }
 
     public function get_index() {
-        return Laravel\Redirect::to('albums_admin/mis_albums');
+        return $this->get_mis_albums();
     }
 
     public function get_nuevo() {
@@ -29,7 +29,7 @@ class Albums_Admin_Controller extends Base_Controller {
         if ($errors->fails()) {
             return \Laravel\Redirect::back()->with_input()->with_errors($errors);
         }
-        return Laravel\Redirect::to('albums_admin/ver_fotos/' . AlbumController::toDir($album));
+        return Laravel\Redirect::to('admin/albumes/ver_fotos/' . AlbumController::toDir($album));
     }
 
     public function get_mis_albums() {
@@ -63,8 +63,8 @@ class Albums_Admin_Controller extends Base_Controller {
         if ($errors->fails()) {
             return \Laravel\Redirect::back()->with_input()->with_errors($errors);
         }
-        $url = "albums_admin/ver_fotos/" . $cont->getDirName($album);
-        return \Laravel\Redirect::to($url);
+
+        return Laravel\Redirect::to('admin/albumes/ver_fotos/' . AlbumController::toDir($album));
     }
 
     public function get_buscar_album() {
@@ -117,8 +117,15 @@ class Albums_Admin_Controller extends Base_Controller {
         if (!$usar_nombre_archivo)
             $rules['nombre'] = 'required';
 
-        $errors = $cont_album->subirFoto(Input::get('nombre_album'), Input::get('descripcion'), 'foto', Input::get('nombre'), $rules);
-        return \Laravel\Redirect::back()->with_errors($errors);
+        try {
+            $cont_album->subirFoto(Input::get('nombre_album'), Input::get('descripcion'), 'foto', Input::get('nombre'), $rules);
+            return Laravel\Redirect::to('admin/albumes/ver_fotos/' . Format::textToDirFormat(Input::get('nombre_album')));
+        } catch (NotifierValidatorException $ex) {
+            $errors = $ex->getNotification();
+            if ($errors->fails()) {
+                return \Laravel\Redirect::back()->with_errors($errors);
+            }
+        }
     }
 
     public function get_eliminar($nombre_album = "") {
@@ -158,7 +165,7 @@ class Albums_Admin_Controller extends Base_Controller {
             }
             return Message::showMessage($ex->getMessage(), 'Advertencia');
         }
-        return $this->get_ver_fotos($foto->album()->get_dir());
+        return Laravel\Redirect::to('admin/albumes/ver_fotos/' . $foto->album()->get_dir());
     }
 
     public function get_eliminar_foto($id) {
@@ -178,7 +185,7 @@ class Albums_Admin_Controller extends Base_Controller {
             }
             return Message::showMessage($ex->getMessage(), 'Advertencia');
         }
-        return $this->get_ver_fotos($album_dir);
+        return Laravel\Redirect::to('admin/albumes/ver_fotos/' . $album_dir);
     }
 
 }

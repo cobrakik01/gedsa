@@ -5,7 +5,7 @@
 
 @section('contenido')
 {{ HTML::span('Inicio de Sesion', array('style' => 'font-size: 20px;')) }}
-{{ Form::open('login', 'POST') }}
+{{ Form::open() }}
 <table align="center" style="width: 320px;">
     <tr>
         <td align="right">

@@ -6,8 +6,8 @@
 	<title>Laravel: A Framework For Web Artisans</title>
 	<meta name="viewport" content="width=device-width">
 
-	{{ HTML::style(URL::$base.'/pages/laravel/css/style.css') }}
-	{{ HTML::script(URL::$base.'/pages/laravel/js/modernizr-2.5.3.min.js') }}
+	{{ HTML::style(URL::$base.'/laravel/css/style.css') }}
+	{{ HTML::script(URL::$base.'/laravel/js/modernizr-2.5.3.min.js') }}
 </head>
 <body onload="prettyPrint()">
 	<div class="wrapper">

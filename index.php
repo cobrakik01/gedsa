@@ -1,3 +1,1 @@
-<?php
-require_once 'pages/index.php';
-?>
+<?php header("Location: ./home/"); ?>

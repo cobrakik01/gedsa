@@ -22,7 +22,7 @@
     <div class="marco-album">
         <?php for($i = 0; $i < 9; $i++): ?>
         <div class="cont-foto">
-            {{ HTML::image('pages/img/Albums/Album 15-03-2013/IMG_20120710_124026.jpg', 'Fachada', array('width'=>'100%', 'height'=>'100%', 'border'=>'0')) }}
+            {{ HTML::image('img/Albums/Album 15-03-2013/IMG_20120710_124026.jpg', 'Fachada', array('width'=>'100%', 'height'=>'100%', 'border'=>'0')) }}
             <div class="desc-foto">
                 Descripcion de la foto
             </div>
