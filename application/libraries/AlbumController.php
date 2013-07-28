@@ -12,7 +12,8 @@
  */
 class AlbumController {
 
-    const ALBUMS_PATH = "pages/uploads/albums/";
+    const REAL_ROOT = "home/";
+    const ALBUMS_PATH = "uploads/albums/";
     const RESULTADOS_POR_PAGINA = 10;
     const ASC = "asc";
     const DESC = "desc";
@@ -149,16 +150,17 @@ class AlbumController {
 
         $album->nombre = Format::skipTilde($album->nombre);
         $album_path = $this->getAlbumPath($album);
+        $real_path_album = self::REAL_ROOT . $album_path;
 
-        if (\Laravel\File::exists($album_path)) {
+        if (\Laravel\File::exists($real_path_album)) {
             return NotifierValidator::createError('La carpeta: ' . $album->nombre . ', ya existe, probablemente no este registrado en la base de datos');
         }
 
 
         $f = new \Laravel\File();
-        $f->mkdir($album_path);
+        $f->mkdir($real_path_album);
 
-        if (!$f->exists($album_path)) {
+        if (!$f->exists($real_path_album)) {
             return NotifierValidator::createError('Ocurrio un error al crear el album: ' . $album->nombre);
         }
 
@@ -208,7 +210,7 @@ class AlbumController {
             }
         }
 
-        $url = $album->url;
+        $url = self::REAL_ROOT . $album->url;
         $album->delete();
         if ($file->exists($url)) {
             $file->rmdir($url);
@@ -229,28 +231,28 @@ class AlbumController {
         }
 
         $url_album = self::ALBUMS_PATH . Format::textToDirFormat($nombre_album);
+        $real_path_album = self::REAL_ROOT . $url_album;
 
         $nombre_foto = Format::skipTilde(($nombre_foto == "") ? $file['name'] : ($nombre_foto . '.' . File::extension($file['name'])));
         $url_foto = $url_album . "/" . Format::textToDirFormat($nombre_foto);
 
-        if (Laravel\File::exists($url_foto)) {
-            return NotifierValidator::createError('La foto: ' . $nombre_foto . ', ya existe');
-            throw new Exception('La foto: ' . $nombre_foto . ', ya existe');
+        $real_path_photo = self::REAL_ROOT . $url_foto;
+
+        if (Laravel\File::exists($real_path_photo)) {
+            throw new NotifierValidatorException('La foto: ' . $nombre_foto . ', ya existe');
         }
 
-        \Laravel\Input::upload('foto', $url_album, Format::textToDirFormat($nombre_foto));
+        \Laravel\Input::upload('foto', $real_path_album, Format::textToDirFormat($nombre_foto));
 
-        if (!Laravel\File::exists($url_foto)) {
-            return NotifierValidator::createError('Ocurrio un error al subir la foto: "' . $nombre_foto . '"');
-            throw new Exception('Ocurrio un error al subir la foto: "' . $nombre_foto . '"');
+        if (!Laravel\File::exists($real_path_photo)) {
+            throw new NotifierValidatorException('Ocurrio un error al subir la foto: "' . $nombre_foto . '"');
         }
 
         $album = $this->buscarPorNombreDeAlbum($nombre_album);
         $foto = new Foto();
 
         if (is_null($album)) {
-            return NotifierValidator::createError('El album: "' . $nombre_album . '" no existe, por tanto no se subira la foto.');
-            throw new Exception('El album: "' . $nombre_album . '" no existe, por tanto no se subira la foto.');
+            throw new NotifierValidatorException('El album: "' . $nombre_album . '" no existe, por tanto no se subira la foto.');
         }
 
         $foto->administradores_id = Auth::user()->id;
@@ -300,8 +302,8 @@ class AlbumController {
 
     private function renombrarAlbum($nuevo_nombre, Album $album) {
         $b = true;
-        $path = $this->getAlbumPath($album);
-        $new_path = self::ALBUMS_PATH . Format::textToDirFormat($nuevo_nombre);
+        $path = self::REAL_ROOT . $this->getAlbumPath($album);
+        $new_path = self::REAL_ROOT . self::ALBUMS_PATH . Format::textToDirFormat($nuevo_nombre);
         \Laravel\File::mkdir($new_path, 7777);
         $new_path .= "/";
         $f = new FilesystemIterator($path);
@@ -328,7 +330,7 @@ class AlbumController {
     }
 
     private function existeDirAlbum(Album $album) {
-        return \Laravel\File::exists($this->getAlbumPath($album));
+        return \Laravel\File::exists(self::REAL_ROOT . $this->getAlbumPath($album));
     }
 
 }

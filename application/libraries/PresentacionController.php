@@ -12,9 +12,14 @@
  */
 class PresentacionController {
 
-    public function nuevaPresentacion($jsonPresentacion) {
-        $fotos = $jsonPresentacion["fotos"];
-        $nombre = $jsonPresentacion["nombre"];
+    public function nuevaPresentacion($nombre, $idFotos) {
+        if (trim($nombre) == "") {
+            throw new NotifierValidatorException("Asigne un numbre a la presentación");
+        }
+
+        if (!is_array($idFotos) || count($idFotos) <= 0) {
+            throw new NotifierValidatorException("seleccione al menos una foto.");
+        }
 
         $presenacion = new Presentacion();
         $presenacion->administradores_id = Auth::user()->id;
@@ -26,17 +31,21 @@ class PresentacionController {
             throw new Exception("Error de base de datos: ");
         }
 
-        $fotos_insertadas = 0;
-        foreach ($fotos as $idFoto) {
-            $success = Laravel\Database::table('presentaciones_has_fotos')->insert(array(
-                'presentacion_nombre' => $presenacion->nombre,
-                'foto_id' => $idFoto,
-            ));
-            if (!$success) {
-                throw new NotifierValidatorException("De " + count($fotos) + " solo se insertaron " + $fotos_insertadas);
-            }
-            $fotos_insertadas++;
-        }
+        $this->agregarFotos($presenacion->nombre, $presenacion->administradores_id, $idFotos);
+        /*
+          $fotos_insertadas = 0;
+          foreach ($idFotos as $idFoto) {
+          $success = Laravel\Database::table('presentaciones_has_fotos')->insert(array(
+          'presentacion_nombre' => $presenacion->nombre,
+          'foto_id' => $idFoto,
+          ));
+          if (!$success) {
+          throw new NotifierValidatorException("De " + count($idFotos) + " solo se insertaron " + $fotos_insertadas);
+          }
+          $fotos_insertadas++;
+          }
+         *
+         */
     }
 
     public function getListPresentaciones() {
@@ -91,15 +100,39 @@ class PresentacionController {
 
         if ($new_name == "" && $descripcion == "") {
             throw new NotifierValidatorException("No se puede actualizar la presentacion con datos en blanco.");
-        } elseif ($new_name != "") {
+        }
+        if ($new_name != "") {
             $data['nombre'] = $new_name;
-        } else if ($descripcion != "") {
+        }
+        if ($descripcion != "") {
             $data['descripcion'] = $descripcion;
         }
 
         $rows_afected = Laravel\Database::table(Presentacion::$table)->where('administradores_id', '=', $admin_id)->where('nombre', '=', $name)->update($data);
         if ($rows_afected != 1) {
             throw new NotifierValidatorException("Ocurrio un al actualizar la presentación");
+        }
+    }
+
+    public function agregarFotos($nombre, $idAdmin, $fotosId) {
+        $presentacion = $this->buscar($nombre, $idAdmin);
+
+        $fotos_insertadas = 0;
+        foreach ($fotosId as $idFoto) {
+            $success = true;
+            try {
+                $success = Laravel\Database::table('presentaciones_has_fotos')->insert(array(
+                    'presentacion_nombre' => $presentacion->nombre,
+                    'foto_id' => $idFoto,
+                ));
+            } catch (Laravel\Database\Exception $ex) {
+                continue;
+            }
+
+            if (!$success) {
+                throw new NotifierValidatorException("De " + count($fotosId) + " solo se insertaron " + $fotos_insertadas);
+            }
+            $fotos_insertadas++;
         }
     }
 

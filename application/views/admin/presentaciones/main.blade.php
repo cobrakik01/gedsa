@@ -8,22 +8,17 @@
         @section('menu_items_albums')
         <li>
             <!-- <a href="#" id="btnNuevaPresentacion">Nueva Presentación</a> -->
-            {{HTML::link('admin/presentaciones/nueva_presentacion','Nueva Presentación')}}
+            {{HTML::link('admin/presentaciones/nueva_presentacion','Nueva Presentación', array('class'=> isset($activeNuevo) ? 'linkActive' : ''))}}
         </li>
         <li>
-            {{HTML::link('admin/presentaciones/mis_presentaciones','Mis Presentaciones')}}
+            {{HTML::link('admin/presentaciones/mis_presentaciones','Presentaciones', array('class'=> isset($activeMisPresentaciones) ? 'linkActive' : ''))}}
         </li>
         <li>
-            {{HTML::link('admin/presentaciones/buscar_presentaciones','Buscar Presentaciones')}}
+            {{HTML::link('admin/presentaciones/buscar_presentacion','Buscar Presentaciones', array('class'=> isset($activeBuscar) ? 'linkActive' : ''))}}
         </li>
         @yield_section
     </ul>
 </div>
-<script>
-    $(document).ready(function() {
-        cbk("#btnNuevaPresentacion").presentacion.nuevo();
-    });
-</script>
 @yield_section
 
 @section('contenido_albums')    

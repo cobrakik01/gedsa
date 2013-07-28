@@ -5,19 +5,14 @@
  * and open the template in the editor.
  */
 
-class Admin_Albumes_Controller extends Base_Controller {
-
-    public function __construct() {
-        parent::__construct();
-        $this->filter('before', 'auth');
-    }
+class Admin_Albumes_Controller extends Admin_Base_Controller {
 
     public function get_index() {
-        return $this->get_mis_albums();
+        return Laravel\Redirect::to('admin/albumes/mis_albums');
     }
 
     public function get_nuevo() {
-        return Laravel\View::make('admin.albums.nuevo');
+        return Laravel\View::make('admin.albums.nuevo')->with(array('activeAlbumes' => true, 'activeNuevo' => true));
     }
 
     public function post_nuevo() {
@@ -35,13 +30,13 @@ class Admin_Albumes_Controller extends Base_Controller {
     public function get_mis_albums() {
         $controlador = new AlbumController();
         $albums = $controlador->buscarAlbumsPorIdDeAdministrador(Auth::user()->id);
-        return Laravel\View::make('admin.albums.mis_albums', array('albums' => $albums));
+        return Laravel\View::make('admin.albums.mis_albums', array('albums' => $albums, 'activeAlbumes' => true, 'activeMisAlbumes' => true));
     }
 
     public function get_todos() {
         $controlador = new AlbumController();
         $albums = $controlador->todosLosAlbums();
-        return Laravel\View::make('admin.albums.todos', array('albums' => $albums));
+        return Laravel\View::make('admin.albums.todos', array('albums' => $albums, 'activeAlbumes' => true, 'activeTodos' => true));
     }
 
     public function get_cambiar_nombre_descripcion($dir_album = "") {
@@ -50,7 +45,7 @@ class Admin_Albumes_Controller extends Base_Controller {
         if (is_null($album)) {
             Message::showMessage('El album: ' . Format::dirToTextFormat($dir_album) . ', no existe');
         }
-        return Laravel\View::make('admin.albums.cambiar_nombre_descripcion')->with(array('album' => $album));
+        return Laravel\View::make('admin.albums.cambiar_nombre_descripcion')->with(array('album' => $album, 'activeAlbumes' => true));
     }
 
     public function post_cambiar_nombre_descripcion() {
@@ -90,7 +85,7 @@ class Admin_Albumes_Controller extends Base_Controller {
                     $albums = $controlador->buscarAlbumsPorNombreDeAdministrador($buscar, $resultados, $orden);
                     break;
             }
-            return \Laravel\View::make('admin.albums.buscar_album')->with(array('albums' => $albums));
+            return \Laravel\View::make('admin.albums.buscar_album')->with(array('albums' => $albums, 'activeAlbumes' => true, 'activeBuscarAlbumes' => true));
         } catch (NotifierValidatorException $ex) {
             $not = $ex->getNotification();
             if ($not->fails()) {
@@ -106,7 +101,7 @@ class Admin_Albumes_Controller extends Base_Controller {
             return Message::showMessage('Esta pagina no esta disponible');
         }
         $fotos = $album->fotos(8);
-        return Laravel\View::make('admin.albums.ver')->with(array('album' => $album, 'fotos' => $fotos));
+        return Laravel\View::make('admin.albums.ver')->with(array('album' => $album, 'fotos' => $fotos, 'activeAlbumes' => true));
     }
 
     public function post_subir_foto() {
@@ -145,7 +140,7 @@ class Admin_Albumes_Controller extends Base_Controller {
                 return Message::showMessage('No se selecciono ninguna foto para editar', 'Pagina no disponible');
             }
             $foto = $controlador->buscarFotoPorId($id);
-            return \Laravel\View::make('admin.albums.editar_foto')->with(array('foto' => $foto));
+            return \Laravel\View::make('admin.albums.editar_foto')->with(array('foto' => $foto, 'activeAlbumes' => true));
         } catch (NotifierValidatorException $ex) {
             return Message::showMessage($ex->getMessage());
         }

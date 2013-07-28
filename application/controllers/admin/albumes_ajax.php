@@ -10,14 +10,9 @@
  *
  * @author cobrakik
  */
-class Admin_Albumes_Ajax_Controller extends Base_Controller {
+class Admin_Albumes_Ajax_Controller extends Admin_Base_Controller {
 
-    public function __construct() {
-        parent::__construct();
-        $this->filter('before', 'auth');
-    }
-    
-    public function get_index(){
+    public function get_index() {
         return "No tienes los permisos para ver esta pagina";
     }
 
@@ -38,18 +33,6 @@ class Admin_Albumes_Ajax_Controller extends Base_Controller {
         return \Laravel\View::make('admin.presentaciones.ajax.results')->with(array('albums' => $albums, 'titulo' => $titulo));
     }
 
-    public function get_ver_album($id = -1) {
-        $controlador = new AlbumController();
-        try {
-            $album = $controlador->buscarAlbumPorId($id, false);
-            $nombre_album = $album->nombre;
-            $fotos = $album->fotos();
-            return \Laravel\View::make('admin.presentaciones.ajax.fotos')->with(array('fotos' => $fotos, 'nombre_album' => $nombre_album));
-        } catch (NotifierValidatorException $ex) {
-            return $ex->getMessage();
-        }
-    }
-
     public function post_nueva_presentacion() {
         $jsonPresentacion = Input::get("data");
         $control = new PresentacionController();
@@ -60,6 +43,24 @@ class Admin_Albumes_Ajax_Controller extends Base_Controller {
             echo $ex->getMessage();
         }
         echo "Se creo correctamente la presentación.";
+    }
+
+    public function get_open() {
+        $id = trim(Input::get('id'));
+        $controlador = new AlbumController();
+        try {
+            $album = $controlador->buscarAlbumPorId($id, false);
+            $fotos = $album->fotos();
+            return \Laravel\View::make('admin.presentaciones.ajax.fotos')->with(array('fotos' => $fotos, 'album' => $album));
+        } catch (NotifierValidatorException $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function get_load() {
+        $controlador = new AlbumController();
+        $albumes = $controlador->todosLosAlbums();
+        return \Laravel\View::make('admin.albums.ajax.load')->with(array('albumes' => $albumes));
     }
 
 }

@@ -29,7 +29,7 @@
         @foreach($presentaciones->results as $presentacion)
         <tr>
             <td>
-                {{HTML::link('admin/presentaciones/ver_presentacion/' . base64_encode($presentacion->nombre) . '/' . base64_encode($presentacion->administradores_id), $presentacion->nombre)}}
+                {{HTML::link('admin/presentaciones/ver_presentacion/?n=' . base64_encode($presentacion->nombre) . '&i=' . base64_encode($presentacion->administradores_id), $presentacion->nombre)}}
             </td>
             <td>
                 {{$presentacion->created_at}}
@@ -38,7 +38,7 @@
                 {{$presentacion->updated_at}}
             </td>
             <td align="center">
-                {{HTML::link('admin/presentaciones/eliminar_presentacion/' . base64_encode($presentacion->nombre) . '/' . base64_encode($presentacion->administradores_id), 'Eliminar')}}
+                {{HTML::link('admin/presentaciones/eliminar_presentacion/?n=' . base64_encode($presentacion->nombre) . '&i=' . base64_encode($presentacion->administradores_id), 'Eliminar')}}
             </td>
         </tr>
         @endforeach
@@ -52,7 +52,11 @@
     </table>
     @else
     <div class="message">
-        Aun no tienes ninguna presentación
+        <h2>Sin presentaciones</h2>
+        <p>
+            Aun no tienes ninguna presentación, puedes crear una nueva presentacion dando clic {{HTML::link('admin/presentaciones/nueva_presentacion/','aquí')}}
+            o dando clic en la opción <strong>"Nueva Presentación"</strong> en el menu de arriba.
+        </p>
     </div>
     @endif
 @endsection

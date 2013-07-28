@@ -10,19 +10,14 @@
  *
  * @author cobrakik
  */
-class Admin_Administradores_Controller extends Base_Controller {
-
-    public function __construct() {
-        parent::__construct();
-        $this->filter('before', 'auth');
-    }
+class Admin_Administradores_Controller extends Admin_Base_Controller {
 
     public function get_index() {
-        return $this->get_result('todos');
+        return Laravel\Redirect::to('admin/administradores/result/todos');
     }
 
     public function get_nuevo() {
-        return View::make('admin.administradores.nuevo');
+        return View::make('admin.administradores.nuevo')->with(array('activeAdministradores' => true, 'activeNuevo' => true));
     }
 
     public function post_nuevo() {
@@ -57,7 +52,7 @@ class Admin_Administradores_Controller extends Base_Controller {
         $us->activo = true;
 
         $us->save();
-        return $this->get_result('todos');
+        return Laravel\Redirect::to('admin/administradores/result/todos');
     }
 
     public function get_editar($id) {
@@ -69,7 +64,7 @@ class Admin_Administradores_Controller extends Base_Controller {
         }
 
         $us_desc = $us->descripcion();
-        return View::make('admin.administradores.editar')->with(array('us' => $us, 'us_desc' => $us_desc));
+        return View::make('admin.administradores.editar')->with(array('us' => $us, 'us_desc' => $us_desc, 'activeAdministradores' => true));
     }
 
     public function post_editar() {
@@ -106,7 +101,7 @@ class Admin_Administradores_Controller extends Base_Controller {
         $us->activo = true;
 
         $us->save();
-        return $this->get_result('todos');
+        return Laravel\Redirect::to('admin/administradores/result/todos');
     }
 
     public function get_eliminar($id) {
@@ -133,7 +128,7 @@ class Admin_Administradores_Controller extends Base_Controller {
     public function get_ver($id) {
         $us = Administrador::find(base64_decode($id));
         $us_dec = $us->descripcion();
-        return View::make('admin.administradores.ver')->with(array('us_desc' => $us_dec));
+        return View::make('admin.administradores.ver')->with(array('us_desc' => $us_dec, 'activeAdministradores' => true));
     }
 
     public function get_activar($id) {
@@ -157,21 +152,25 @@ class Admin_Administradores_Controller extends Base_Controller {
         $users = null;
         $registros_por_pagina = 15;
         $accion = "sin accion";
+        $activeLink = "";
         switch ($arg) {
             case 'todos':
+                $activeLink = "activeTodos";
                 $accion = "Todos Los Registros";
                 $users = Administrador::select()->order_by('nombre', 'desc')->paginate($registros_por_pagina);
                 break;
             case 'activos':
+                $activeLink = "activeActivos";
                 $accion = "Administradores Activos";
                 $users = Administrador::where('activo', '=', true)->order_by('nombre', 'desc')->paginate($registros_por_pagina);
                 break;
             case 'inactivos':
+                $activeLink = "activeInactivos";
                 $accion = 'Administradores Inactivos';
                 $users = Administrador::where('activo', '=', false)->order_by('nombre', 'desc')->paginate($registros_por_pagina);
                 break;
         }
-        return View::make('admin.administradores.result')->with(array('users' => $users, 'accion' => $accion));
+        return View::make('admin.administradores.result')->with(array('users' => $users, 'accion' => $accion, 'activeAdministradores' => true, $activeLink => true));
     }
 
     public function get_buscar() {
@@ -209,8 +208,7 @@ class Admin_Administradores_Controller extends Base_Controller {
                 $us_desc = DescripcionUsuario::where('telefono', 'like', '%' . $txtBuscar . '%')->order_by('telefono', $listOrden)->paginate($listResultadosPorPagina);
                 break;
         }
-        return View::make('admin.administradores.buscar')->with(array('users' => $users, 'us_desc' => $us_desc, 'txtBuscar' => $txtBuscar, 'listFiltro' => $listFiltro, 'listOrden' => $listOrden, 'listResultadosPorPagina' => $listResultadosPorPagina));
-        //return View::make('admin.administradores.buscar')->with(array('users' => null, 'us_desc' => null));
+        return View::make('admin.administradores.buscar')->with(array('users' => $users, 'us_desc' => $us_desc, 'txtBuscar' => $txtBuscar, 'listFiltro' => $listFiltro, 'listOrden' => $listOrden, 'listResultadosPorPagina' => $listResultadosPorPagina, 'activeAdministradores' => true, 'activeBuscar' => true));
     }
 
 }

@@ -101,7 +101,7 @@
                 {{HTML::link('admin/albumes/ver_fotos/' . AlbumController::toDir($album) ,$album->nombre, array('title'=>'Click para ver las fotos del Album'))}}
             </td>
             <td>
-                {{HTML::link('admin/albumes/ver/' . base64_encode($album->administrador()->id) ,$album->administrador()->nombre, array('title'=>'Click para ver la informacion del Administador'))}}
+                {{HTML::link('admin/administradores/ver/' . base64_encode($album->administrador()->id) ,$album->administrador()->nombre, array('title'=>'Click para ver la informacion del Administador'))}}
             </td>
             <td>
                 {{$album->created_at}}

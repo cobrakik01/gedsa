@@ -1,5 +1,5 @@
 @if($fotos->results)
-    <h3>Estas biendo el álbum: <span style="font-weight: bold;">{{$nombre_album}}</span></h3>
+    <h3>Estas biendo el álbum: <span style="font-weight: bold;">{{$album->nombre}}</span></h3>
     <div id='fotos-seleccionadas' class="message" style="margin: 0 auto; margin-bottom: 10px; text-align: center;width: 300px; font-size: 12px; display: none;">
         0 Fotos seleccionadas.
     </div>
@@ -33,8 +33,24 @@
     <script>
         
         $(document).ready(function(){
-            //fotos = [];
-            presentacion = {fotos:[], nombre:""};
+            $("div.pagination ul li a").click(function(e){
+                e.preventDefault();
+                var href = $(this).attr("href");
+                
+                if(href != "#"){
+                    var token1 = href.split('page');
+                    if(token1.length == 2){
+                        var nPage = token1[1].split('=');
+                        if(nPage.length == 2){
+                            cbk.util.load({
+                                url: href,
+                                container: cbk.presentacion.container,
+                                data: {page: $.trim(nPage[1]), id:"{{$album->id}}"}
+                            });
+                        }
+                    }
+                }
+            });
             
             $("input[type='checkbox']").prop("disabled", "disabled");
             $(".container-photo").click(function(e){
@@ -43,17 +59,17 @@
                  checbox = $($($($(this).children().get(1)).children().get(0)).get(0)).children().get(0);
                  checbox.checked = (checbox.checked) ? false:true;
                  if(checbox.checked){
-                     presentacion.fotos.push(idFoto);
+                     cbk.presentacion.selectedPhotos.push(idFoto);
                      $($($($(this).children().get(1)).children().get(0)).get(0)).css({"background-color":"#99ff99"});
                  } else {
-                     presentacion.fotos.pop();                     
+                     cbk.presentacion.selectedPhotos.pop();
                      $($($($(this).children().get(1)).children().get(0)).get(0)).css({"background-color":"#ffffff"});
                  }
                  
-                 if(presentacion.fotos.length > 0){
+                 if(cbk.presentacion.selectedPhotos.length > 0){
                      $("#fotos-seleccionadas").fadeIn("slow");
                  }
-                 $("#fotos-seleccionadas").text(presentacion.fotos.length + " Fotos seleccionadas.");
+                 $("#fotos-seleccionadas").text(cbk.presentacion.selectedPhotos.length + " Fotos seleccionadas.");
             });
         });
     </script>

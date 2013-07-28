@@ -73,20 +73,24 @@ class FotoController {
         $ext = $foto->getExtension();
         $foto->nombre = Format::trimEpecialChars($nuevo_nombre) . '.' . $ext;
         $nombre_archivo = $this->getFileName($foto);
-        $old_path = $foto->getPath();
+        $old_path = AlbumController::REAL_ROOT . $foto->getPath();
         $new_path = $foto->album()->url;
+
         if (!ends_with($new_path, '/')) {
             $new_path .= '/';
         }
         $new_path .= $nombre_archivo;
+        $new_real_path = AlbumController::REAL_ROOT . $new_path;
+
         if (!Laravel\File::exists($old_path)) {
             throw new NotifierValidatorException('La foto que se quiere renombrar no existe fisicamente en el disco del servidor!!!');
         }
-        if (File::exists($new_path)) {
+
+        if (File::exists($new_real_path)) {
             throw new NotifierValidatorException('El nombre: ' . $foto->nombre . ', ya esta siendo utilizado por otra foto del mismo album.');
         }
-        Laravel\File::copy($old_path, $new_path);
-        if (!File::exists($new_path)) {
+        Laravel\File::copy($old_path, $new_real_path);
+        if (!File::exists($new_real_path)) {
             throw new NotifierValidatorException('Ocurrio un error al renombrar la foto.');
         }
         if (!Laravel\File::delete($old_path)) {

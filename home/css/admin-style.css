@@ -141,7 +141,7 @@ a.btn:hover, input[type="button"]:hover, input[type="submit"]:hover, button:hove
     border-bottom: solid 2px #fbaf18;
 }
 
-.menu ul li a:hover {
+.menu ul li a:hover, .menu ul li a.linkActive {
     /*background-color: #eaa316;*/
     background-image: url(../img/sys_admin/button.png);
     border-bottom: solid 2px #ba8211;

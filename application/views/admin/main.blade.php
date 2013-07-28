@@ -18,11 +18,11 @@
         <div class="menu">
             <ul>
                 @section('menu')
-                <li>{{HTML::link('admin/perfil', 'Perfil de ' . @Auth::user()->nombre)}}</li>
-                <li>{{HTML::link('admin/presentaciones', 'Administrar Presentaciones')}}</li>
-                <li>{{HTML::link('admin/albumes', 'Administrar Albums')}}</li>
+                <li>{{HTML::link('admin/perfil', 'Perfil de ' . @Auth::user()->nombre, array('class'=> isset($activePerfil) ? 'linkActive' : ''))}}</li>
+                <li>{{HTML::link('admin/presentaciones', 'Administrar Presentaciones', array('class'=> isset($activePresentaciones) ? 'linkActive' : ''))}}</li>
+                <li>{{HTML::link('admin/albumes', 'Administrar Albums', array('class'=> isset($activeAlbumes) ? 'linkActive' : ''))}}</li>
                 <!-- <li>{{HTML::link('servicios_admin', 'Administrar Servicios')}}</li> -->
-                <li>{{HTML::link('admin/administradores', 'Administradores')}}</li>
+                <li>{{HTML::link('admin/administradores', 'Administradores', array('class'=> isset($activeAdministradores) ? 'linkActive' : ''))}}</li>
                 <li>{{HTML::link('admin/logout', 'Cerrar Sesion')}}</li>
                 @yield_section
             </ul>

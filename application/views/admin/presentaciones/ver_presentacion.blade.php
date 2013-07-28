@@ -11,25 +11,32 @@
 @section('contenido_albums')
     <h3>
         Presentacion <span style="font-weight: bold;">{{$presentacion->nombre}}</span>
-        <!-- <a href='/' id='presentacion-editar-nombre'>editar</a> -->
-        {{HTML::link('admin/presentaciones/editar_nombre/' . base64_encode($presentacion->nombre) . '/' . base64_encode($presentacion->administradores_id), 'editar')}}
+        {{HTML::link('admin/presentaciones/editar_nombre/?n=' . base64_encode($presentacion->nombre) . '&i=' . base64_encode($presentacion->administradores_id), 'editar')}}
     </h3>
     <div style="margin-bottom: 30px;">
         <div id="descripcion-presentacion">
             @if(strlen($presentacion->descripcion) > 0)
                 {{$presentacion->descripcion}}
             @else
-                Este álbum aún no tiene descripcion.
+                Esta presentación aún no tiene descripcion.
             @endif
-            {{HTML::link('admin/presentaciones/editar_descripcion/' . base64_encode($presentacion->nombre) . '/' . base64_encode($presentacion->administradores_id), 'editar')}}
-            <!-- <a href='#' id='presentacion-editar-descripcion'>editar</a> -->
+            {{HTML::link('admin/presentaciones/editar_descripcion/?n=' . base64_encode($presentacion->nombre) . '&i=' . base64_encode($presentacion->administradores_id), 'editar')}}
         </div>
-        <div id="dlg-presentacion" style="display: none;">
-            <div id="dlg-presentacion-content">
-            </div>
-        </div>
+        <table align="right">
+            <tr>
+                <td>
+                    <button id="btnAgregarFotos" style="display: none;">Agregar fotos a la presentación</button>
+                </td> 
+            </tr>
+        </table>
     </div>
-    <div class="wraper-photo">
+    <div id="content-ajax-presentacion">
+        <div style="margin-top: 10px; margin-bottom: 10px;">
+            <a id="lnkAgregarFotos" href="#" style="text-align: center;" class="btn">Agregar fotos a la presentación</a>
+        </div>
+        
+        @if($fotos->total > 0)
+        <div class="wraper-photo">
             <ul>
                 @foreach($fotos->results as $foto)
                     <li title="{{(strlen($foto->descripcion) > 0) ? 'Descripción: ' . $foto->descripcion : ''}}">
@@ -40,7 +47,7 @@
                                 {{HTML::link('admin/albumes/editar_foto/' . $foto->id,'', array('class'=>'btnEditControl', 'title'=>'Editar Foto'))}}
                             </li>
                             <li>
-                                {{HTML::link('admin/presentaciones/eliminar_foto/?pnom=' . base64_encode($presentacion->nombre) . '&fid=' . base64_encode($foto->id) , '', array('class'=>'btnDeleteControl', 'title'=>'Eliminar Foto'))}}
+                                {{HTML::link('admin/presentaciones/ver_presentacion/eliminar_foto/?pnom=' . base64_encode($presentacion->nombre) . '&fid=' . base64_encode($foto->id) , '', array('class'=>'btnDeleteControl', 'title'=>'Eliminar Foto'))}}
                             </li>
                             </ul>
                             <div class="description-photo-bg"></div>
@@ -59,9 +66,27 @@
                 </td>
             </tr>
         </table>
-    <script>
+        @else
+        <div class="message">
+            <h3>Si fotos</h3>
+            <p>
+                No se encontraron fotos de esta presentación. puedes agregar fotos con el boton de arriba.
+            </p>
+        </div>
+        @endif
+    </div>
+
+    <script type="text/javascript">
         (function(){
             $(".wraper-photo ul li").tooltip();
+            $("#lnkAgregarFotos").click(function(e){
+                e.preventDefault();
+                cbk.presentacion.mostrarFotos("#content-ajax-presentacion");
+                $("#btnAgregarFotos").fadeIn("slow");
+            });
+            $("#btnAgregarFotos").click(function(){
+                cbk.presentacion.agregarFotos("{{base64_encode($presentacion->nombre)}}", "{{base64_encode($presentacion->administradores_id)}}");
+            });
         })();
     </script>
 @endsection

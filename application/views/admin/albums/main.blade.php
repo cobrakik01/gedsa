@@ -7,16 +7,16 @@
         <ul>
             @section('menu_items_albums')
             <li>
-                {{HTML::link('admin/albumes/nuevo','Nuevo álbum')}}
+                {{HTML::link('admin/albumes/nuevo','Nuevo álbum', array('class'=> isset($activeNuevo) ? 'linkActive' : ''))}}
             </li>
             <li>
-                {{HTML::link('admin/albumes/mis_albums','Mis álbumes')}}
+                {{HTML::link('admin/albumes/mis_albums','Mis álbumes', array('class'=> isset($activeMisAlbumes) ? 'linkActive' : ''))}}
             </li>
             <li>
-                {{HTML::link('admin/albumes/todos','Mostrar todos los álbumes')}}
+                {{HTML::link('admin/albumes/todos','Mostrar todos los álbumes', array('class'=> isset($activeTodos) ? 'linkActive' : ''))}}
             </li>
             <li>
-                {{HTML::link('admin/albumes/buscar_album','Buscar álbum')}}
+                {{HTML::link('admin/albumes/buscar_album','Buscar álbum', array('class'=> isset($activeBuscarAlbumes) ? 'linkActive' : ''))}}
             </li>
             @yield_section
         </ul>
